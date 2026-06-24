@@ -1,10 +1,10 @@
 //! Market data models.
 
 use rust_decimal::Decimal;
-use serde::Deserialize;
+use serde::{Deserialize, Serialize};
 
 /// Server time response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ServerTime {
     /// Server time in seconds
@@ -14,7 +14,7 @@ pub struct ServerTime {
 }
 
 /// Instruments info response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct InstrumentsInfo {
     /// Category
@@ -27,7 +27,7 @@ pub struct InstrumentsInfo {
 }
 
 /// Single instrument info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct InstrumentInfo {
     /// Symbol name
@@ -70,7 +70,7 @@ pub struct InstrumentInfo {
 }
 
 /// Leverage filter.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LeverageFilter {
     /// Min leverage
@@ -82,7 +82,7 @@ pub struct LeverageFilter {
 }
 
 /// Price filter.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PriceFilter {
     /// Min price
@@ -94,7 +94,7 @@ pub struct PriceFilter {
 }
 
 /// Lot size filter.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct LotSizeFilter {
     /// Max order qty
@@ -124,7 +124,7 @@ pub struct LotSizeFilter {
 }
 
 /// Orderbook response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Orderbook {
     /// Symbol
@@ -140,7 +140,7 @@ pub struct Orderbook {
 }
 
 /// Tickers response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Tickers {
     /// Category
@@ -150,7 +150,7 @@ pub struct Tickers {
 }
 
 /// Single ticker.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Ticker {
     /// Symbol
@@ -212,7 +212,7 @@ pub struct Ticker {
 }
 
 /// Kline response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Klines {
     /// Category
@@ -243,7 +243,7 @@ pub struct Kline {
 }
 
 /// Funding rate history response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FundingHistory {
     /// Category
@@ -253,7 +253,7 @@ pub struct FundingHistory {
 }
 
 /// Single funding record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FundingRecord {
     /// Symbol
@@ -265,7 +265,7 @@ pub struct FundingRecord {
 }
 
 /// Recent trades response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RecentTrades {
     /// Category
@@ -275,7 +275,7 @@ pub struct RecentTrades {
 }
 
 /// Single trade.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Trade {
     /// Exec ID
@@ -296,7 +296,7 @@ pub struct Trade {
 }
 
 /// Open interest response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OpenInterest {
     /// Category
@@ -311,7 +311,7 @@ pub struct OpenInterest {
 }
 
 /// Single open interest record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OpenInterestRecord {
     /// Open interest
@@ -321,7 +321,7 @@ pub struct OpenInterestRecord {
 }
 
 /// Risk limit response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RiskLimits {
     /// Category
@@ -331,7 +331,7 @@ pub struct RiskLimits {
 }
 
 /// Single risk limit.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RiskLimit {
     /// ID

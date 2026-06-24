@@ -6,7 +6,7 @@ use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 /// Place order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaceOrderParams {
     /// Product category
@@ -167,7 +167,7 @@ impl PlaceOrderParams {
 }
 
 /// Amend order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AmendOrderParams {
     /// Product category
@@ -237,7 +237,7 @@ impl AmendOrderParams {
 }
 
 /// Cancel order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelOrderParams {
     /// Product category
@@ -275,7 +275,7 @@ impl CancelOrderParams {
 }
 
 /// Cancel all orders request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllOrdersParams {
     /// Product category
@@ -292,7 +292,7 @@ pub struct CancelAllOrdersParams {
 }
 
 /// Order response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderResponse {
     /// Order ID
@@ -303,7 +303,7 @@ pub struct OrderResponse {
 }
 
 /// Orders list response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrdersList {
     /// Category
@@ -316,7 +316,7 @@ pub struct OrdersList {
 }
 
 /// Order info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderInfo {
     /// Order ID
@@ -368,7 +368,7 @@ pub struct OrderInfo {
 }
 
 /// Batch order request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderRequest {
     /// Product category
@@ -378,7 +378,7 @@ pub struct BatchOrderRequest {
 }
 
 /// Batch order response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderResponse {
     /// List of results
@@ -386,7 +386,7 @@ pub struct BatchOrderResponse {
 }
 
 /// Single batch order result.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderResult {
     /// Category
@@ -405,7 +405,7 @@ pub struct BatchOrderResult {
 }
 
 /// Cancel all orders response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllResponse {
     /// List of cancelled orders
@@ -413,7 +413,7 @@ pub struct CancelAllResponse {
 }
 
 /// Cancelled order info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelledOrder {
     /// Order ID

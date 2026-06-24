@@ -3,14 +3,14 @@
 use serde::{Deserialize, Serialize};
 
 /// Accept non-LP quote request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AcceptNonLpQuoteParams {
     pub rfq_id: String,
 }
 
 /// Accept non-LP quote response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AcceptNonLpQuoteResponse {
     pub ret_code: Option<i32>,
@@ -21,19 +21,19 @@ pub struct AcceptNonLpQuoteResponse {
 }
 
 /// Accept non-LP quote result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AcceptNonLpQuoteResult {
     pub rfq_id: Option<String>,
 }
 
 /// Cancel all quotes request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllQuotesParams {}
 
 /// Cancel all quotes response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllQuotesResponse {
     pub ret_code: Option<i32>,
@@ -44,7 +44,7 @@ pub struct CancelAllQuotesResponse {
 }
 
 /// Cancel all quotes result item.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllQuotesResultItem {
     pub rfq_id: Option<String>,
@@ -55,12 +55,12 @@ pub struct CancelAllQuotesResultItem {
 }
 
 /// Cancel all RFQs request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllRfqsParams {}
 
 /// Cancel all RFQs response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllRfqsResponse {
     pub ret_code: Option<i32>,
@@ -71,7 +71,7 @@ pub struct CancelAllRfqsResponse {
 }
 
 /// Cancel all RFQs result item.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllRfqsResult {
     pub rfq_id: Option<String>,
@@ -81,7 +81,7 @@ pub struct CancelAllRfqsResult {
 }
 
 /// Cancel quote request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelQuoteParams {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -93,7 +93,7 @@ pub struct CancelQuoteParams {
 }
 
 /// Cancel quote response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelQuoteResponse {
     pub ret_code: Option<i32>,
@@ -104,7 +104,7 @@ pub struct CancelQuoteResponse {
 }
 
 /// Cancel quote result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelQuoteResult {
     pub rfq_id: Option<String>,
@@ -113,7 +113,7 @@ pub struct CancelQuoteResult {
 }
 
 /// Cancel RFQ request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelRfqParams {
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -123,7 +123,7 @@ pub struct CancelRfqParams {
 }
 
 /// Cancel RFQ response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelRfqResponse {
     pub ret_code: Option<i32>,
@@ -134,7 +134,7 @@ pub struct CancelRfqResponse {
 }
 
 /// Cancel RFQ result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelRfqResult {
     pub rfq_id: Option<String>,
@@ -142,7 +142,7 @@ pub struct CancelRfqResult {
 }
 
 /// Create quote request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateQuoteParams {
     pub rfq_id: String,
@@ -159,7 +159,7 @@ pub struct CreateQuoteParams {
 }
 
 /// Quote leg used in create quote request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QuoteLeg {
     pub category: String,
@@ -170,7 +170,7 @@ pub struct QuoteLeg {
 }
 
 /// Create quote response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateQuoteResponse {
     pub ret_code: Option<i32>,
@@ -181,7 +181,7 @@ pub struct CreateQuoteResponse {
 }
 
 /// Create quote result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateQuoteResult {
     pub rfq_id: Option<String>,
@@ -193,7 +193,7 @@ pub struct CreateQuoteResult {
 }
 
 /// Create RFQ request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateRfqParams {
     pub counterparties: Vec<String>,
@@ -207,7 +207,7 @@ pub struct CreateRfqParams {
 }
 
 /// RFQ leg used in create RFQ request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateRfqLeg {
     pub category: String,
@@ -217,7 +217,7 @@ pub struct CreateRfqLeg {
 }
 
 /// Create RFQ response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateRfqResponse {
     pub ret_code: Option<i32>,
@@ -228,7 +228,7 @@ pub struct CreateRfqResponse {
 }
 
 /// Create RFQ result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CreateRfqResult {
     pub rfq_id: Option<String>,
@@ -239,7 +239,7 @@ pub struct CreateRfqResult {
 }
 
 /// Execute quote request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExecuteQuoteParams {
     pub rfq_id: String,
@@ -248,7 +248,7 @@ pub struct ExecuteQuoteParams {
 }
 
 /// Execute quote response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExecuteQuoteResponse {
     pub ret_code: Option<i32>,
@@ -259,7 +259,7 @@ pub struct ExecuteQuoteResponse {
 }
 
 /// Execute quote result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExecuteQuoteResult {
     pub rfq_id: Option<String>,
@@ -269,7 +269,7 @@ pub struct ExecuteQuoteResult {
 }
 
 /// Get public trades response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetPublicTradesResponse {
     pub ret_code: Option<i32>,
@@ -280,7 +280,7 @@ pub struct GetPublicTradesResponse {
 }
 
 /// Get public trades result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetPublicTradesResult {
     pub cursor: Option<String>,
@@ -288,7 +288,7 @@ pub struct GetPublicTradesResult {
 }
 
 /// Public trade entry.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PublicTrade {
     pub rfq_id: Option<String>,
@@ -299,7 +299,7 @@ pub struct PublicTrade {
 }
 
 /// Public trade leg.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PublicTradeLeg {
     pub category: Option<String>,
@@ -311,7 +311,7 @@ pub struct PublicTradeLeg {
 }
 
 /// Get quotes realtime response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetQuotesRealtimeResponse {
     pub ret_code: Option<i32>,
@@ -322,14 +322,14 @@ pub struct GetQuotesRealtimeResponse {
 }
 
 /// Get quotes realtime result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetQuotesRealtimeResult {
     pub list: Option<Vec<QuoteRealtimeItem>>,
 }
 
 /// Quote realtime item.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QuoteRealtimeItem {
     pub rfq_id: Option<String>,
@@ -347,7 +347,7 @@ pub struct QuoteRealtimeItem {
 }
 
 /// Quote item leg (response).
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QuoteItemLeg {
     pub category: Option<String>,
@@ -357,7 +357,7 @@ pub struct QuoteItemLeg {
 }
 
 /// Get quotes response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetQuotesResponse {
     pub ret_code: Option<i32>,
@@ -368,7 +368,7 @@ pub struct GetQuotesResponse {
 }
 
 /// Get quotes result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetQuotesResult {
     pub cursor: Option<String>,
@@ -376,7 +376,7 @@ pub struct GetQuotesResult {
 }
 
 /// Quote item (history).
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct QuoteItem {
     pub rfq_id: Option<String>,
@@ -394,7 +394,7 @@ pub struct QuoteItem {
 }
 
 /// Get RFQ config response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqConfigResponse {
     pub ret_code: Option<i32>,
@@ -405,7 +405,7 @@ pub struct GetRfqConfigResponse {
 }
 
 /// Get RFQ config result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqConfigResult {
     pub desk_code: Option<String>,
@@ -422,14 +422,14 @@ pub struct GetRfqConfigResult {
 }
 
 /// RFQ strategy type definition.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RfqStrategyType {
     pub strategy_name: Option<String>,
 }
 
 /// RFQ counterparty definition.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct RfqCounterparty {
     pub trader_name: Option<String>,
@@ -439,7 +439,7 @@ pub struct RfqCounterparty {
 }
 
 /// Get RFQs realtime response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsRealtimeResponse {
     pub ret_code: Option<i32>,
@@ -450,14 +450,14 @@ pub struct GetRfqsRealtimeResponse {
 }
 
 /// Get RFQs realtime result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsRealtimeResult {
     pub list: Option<Vec<GetRfqsRealtimeItem>>,
 }
 
 /// RFQ realtime item.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsRealtimeItem {
     pub rfq_id: Option<String>,
@@ -474,7 +474,7 @@ pub struct GetRfqsRealtimeItem {
 }
 
 /// RFQ realtime leg.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsRealtimeLeg {
     pub category: Option<String>,
@@ -484,7 +484,7 @@ pub struct GetRfqsRealtimeLeg {
 }
 
 /// Get RFQs response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsResponse {
     pub ret_code: Option<i32>,
@@ -495,7 +495,7 @@ pub struct GetRfqsResponse {
 }
 
 /// Get RFQs result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsResult {
     pub cursor: Option<String>,
@@ -503,7 +503,7 @@ pub struct GetRfqsResult {
 }
 
 /// RFQ history list item.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsListItem {
     pub rfq_id: Option<String>,
@@ -520,7 +520,7 @@ pub struct GetRfqsListItem {
 }
 
 /// RFQ history leg.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetRfqsLeg {
     pub category: Option<String>,
@@ -530,7 +530,7 @@ pub struct GetRfqsLeg {
 }
 
 /// Get trade history response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetTradeHistoryResponse {
     pub ret_code: Option<i32>,
@@ -541,7 +541,7 @@ pub struct GetTradeHistoryResponse {
 }
 
 /// Get trade history result payload.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetTradeHistoryResult {
     pub cursor: Option<String>,
@@ -549,7 +549,7 @@ pub struct GetTradeHistoryResult {
 }
 
 /// Trade history entry.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetTradeHistoryTrade {
     pub rfq_id: Option<String>,
@@ -567,7 +567,7 @@ pub struct GetTradeHistoryTrade {
 }
 
 /// Trade history leg.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct GetTradeHistoryLeg {
     pub category: Option<String>,

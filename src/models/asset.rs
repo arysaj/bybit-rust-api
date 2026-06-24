@@ -5,7 +5,7 @@ use serde::{Deserialize, Serialize};
 use tracing::warn;
 
 /// Coin info response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CoinInfoResponse {
     /// List of coins
@@ -13,7 +13,7 @@ pub struct CoinInfoResponse {
 }
 
 /// Coin info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CoinInfo {
     /// Coin name
@@ -30,7 +30,7 @@ pub struct CoinInfo {
 }
 
 /// Chain info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ChainInfo {
     /// Chain
@@ -59,7 +59,7 @@ pub struct ChainInfo {
 }
 
 /// Internal transfer request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct InternalTransferParams {
     /// Transfer ID (UUID)
@@ -94,7 +94,7 @@ impl InternalTransferParams {
 }
 
 /// Transfer response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TransferResponse {
     /// Transfer ID
@@ -102,7 +102,7 @@ pub struct TransferResponse {
 }
 
 /// Transfer list response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TransferList {
     /// List of transfers
@@ -113,7 +113,7 @@ pub struct TransferList {
 }
 
 /// Transfer record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TransferRecord {
     /// Transfer ID
@@ -133,7 +133,7 @@ pub struct TransferRecord {
 }
 
 /// Deposit address response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DepositAddressResponse {
     /// Coin
@@ -143,7 +143,7 @@ pub struct DepositAddressResponse {
 }
 
 /// Deposit chain address.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DepositChainAddress {
     /// Chain type
@@ -158,7 +158,7 @@ pub struct DepositChainAddress {
 }
 
 /// Deposit records response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DepositRecords {
     /// Rows
@@ -169,7 +169,7 @@ pub struct DepositRecords {
 }
 
 /// Deposit record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct DepositRecord {
     /// Coin
@@ -205,7 +205,7 @@ pub struct DepositRecord {
 }
 
 /// Withdraw request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawParams {
     /// Coin
@@ -281,7 +281,7 @@ impl WithdrawParams {
 }
 
 /// Withdraw response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawResponse {
     /// Withdraw ID
@@ -289,7 +289,7 @@ pub struct WithdrawResponse {
 }
 
 /// Withdraw records response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawRecords {
     /// Rows
@@ -300,7 +300,7 @@ pub struct WithdrawRecords {
 }
 
 /// Withdraw record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawRecord {
     /// Withdraw ID
@@ -335,7 +335,7 @@ pub struct WithdrawRecord {
 }
 
 /// Withdrawable amount response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawableAmount {
     /// Limit amount info
@@ -346,7 +346,7 @@ pub struct WithdrawableAmount {
 }
 
 /// Withdrawable amount detail.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawableAmountDetail {
     /// Spot
@@ -358,7 +358,7 @@ pub struct WithdrawableAmountDetail {
 }
 
 /// Withdrawable amount item.
-#[derive(Debug, Clone, Default, Deserialize)]
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WithdrawableAmountItem {
     /// Coin
@@ -373,7 +373,7 @@ pub struct WithdrawableAmountItem {
 }
 
 /// Cancel withdraw request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelWithdrawParams {
     /// Withdraw ID

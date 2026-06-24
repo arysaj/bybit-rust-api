@@ -4,7 +4,7 @@ use crate::models::common::*;
 use serde::{Deserialize, Serialize};
 
 /// Position list response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PositionList {
     /// Category
@@ -17,7 +17,7 @@ pub struct PositionList {
 }
 
 /// Position info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Position {
     /// Position index
@@ -88,7 +88,7 @@ pub struct Position {
 }
 
 /// Set leverage request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SetLeverageParams {
     /// Category
@@ -102,7 +102,7 @@ pub struct SetLeverageParams {
 }
 
 /// Trading stop request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TradingStopParams {
     /// Category
@@ -130,7 +130,7 @@ pub struct TradingStopParams {
 }
 
 /// Switch position mode request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SwitchPositionModeParams {
     /// Category
@@ -146,7 +146,7 @@ pub struct SwitchPositionModeParams {
 }
 
 /// Set risk limit request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SetRiskLimitParams {
     /// Category
@@ -161,7 +161,7 @@ pub struct SetRiskLimitParams {
 }
 
 /// Add margin request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AddMarginParams {
     /// Category
@@ -176,7 +176,7 @@ pub struct AddMarginParams {
 }
 
 /// Closed PnL response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ClosedPnlList {
     /// Category
@@ -189,7 +189,7 @@ pub struct ClosedPnlList {
 }
 
 /// Closed PnL record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ClosedPnl {
     /// Symbol
@@ -229,7 +229,7 @@ pub struct ClosedPnl {
 }
 
 /// Execution list response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct ExecutionList {
     /// Category
@@ -242,7 +242,7 @@ pub struct ExecutionList {
 }
 
 /// Execution record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Execution {
     /// Symbol

@@ -3,7 +3,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Wallet balance response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct WalletBalance {
     /// List of account balances
@@ -11,7 +11,7 @@ pub struct WalletBalance {
 }
 
 /// Account balance.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AccountBalance {
     /// Account type
@@ -52,7 +52,7 @@ pub struct AccountBalance {
 }
 
 /// Coin balance.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CoinBalance {
     /// Coin name
@@ -102,7 +102,7 @@ pub struct CoinBalance {
 }
 
 /// Account info response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AccountInfo {
     /// Unified margin status
@@ -132,7 +132,7 @@ pub struct AccountInfo {
 }
 
 /// Fee rate response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FeeRates {
     /// Category
@@ -142,7 +142,7 @@ pub struct FeeRates {
 }
 
 /// Fee rate.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct FeeRate {
     /// Symbol
@@ -157,7 +157,7 @@ pub struct FeeRate {
 }
 
 /// Transaction log response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TransactionLogs {
     /// List of transactions
@@ -168,7 +168,7 @@ pub struct TransactionLogs {
 }
 
 /// Transaction log.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct TransactionLog {
     /// ID
@@ -213,7 +213,7 @@ pub struct TransactionLog {
 }
 
 /// Set margin mode request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct SetMarginModeParams {
     /// Set margin mode
@@ -221,7 +221,7 @@ pub struct SetMarginModeParams {
 }
 
 /// Collateral info response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CollateralInfo {
     /// List of collateral info
@@ -229,7 +229,7 @@ pub struct CollateralInfo {
 }
 
 /// Collateral.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct Collateral {
     /// Currency
@@ -258,7 +258,7 @@ pub struct Collateral {
 }
 
 /// Borrow history response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BorrowHistory {
     /// List of borrow records
@@ -269,7 +269,7 @@ pub struct BorrowHistory {
 }
 
 /// Borrow record.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BorrowRecord {
     /// Currency
