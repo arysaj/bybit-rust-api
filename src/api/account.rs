@@ -106,4 +106,136 @@ impl BybitClient {
 
         self.get("/v5/account/borrow-history", &params).await
     }
+
+    pub async fn batch_set_collateral(
+        &self,
+        params: BatchSetCollateralParams,
+    ) -> Result<BatchSetCollateralResponse> {
+        self.post("/v5/account/set-collateral-switch-batch", &params)
+            .await
+    }
+
+    pub async fn get_account_instruments(
+        &self,
+        category: &str,
+        symbol: Option<&str>,
+        limit: Option<u32>,
+        cursor: Option<&str>,
+    ) -> Result<GetAccountInstrumentsResponse> {
+        let limit_str;
+        let mut params = vec![("category", category)];
+        if let Some(s) = symbol {
+            params.push(("symbol", s));
+        }
+        if let Some(l) = limit {
+            limit_str = l.to_string();
+            params.push(("limit", limit_str.as_str()));
+        }
+        if let Some(c) = cursor {
+            params.push(("cursor", c));
+        }
+        self.get("/v5/account/instruments-info", &params).await
+    }
+
+    pub async fn get_coin_greeks(&self, base_coin: Option<&str>) -> Result<GetCoinGreeksResponse> {
+        let mut params = vec![];
+        if let Some(b) = base_coin {
+            params.push(("baseCoin", b));
+        }
+        self.get("/v5/asset/coin-greeks", &params).await
+    }
+
+    pub async fn get_dcp_info(&self) -> Result<GetDcpInfoResponse> {
+        self.get("/v5/account/query-dcp-info", &[]).await
+    }
+
+    pub async fn get_group_fee_rate(
+        &self,
+        product_type: &str,
+        group_id: Option<&str>,
+    ) -> Result<GetGroupFeeRateResponse> {
+        let mut params = vec![("productType", product_type)];
+        if let Some(g) = group_id {
+            params.push(("groupId", g));
+        }
+        self.get_public("/v5/market/fee-group-info", &params).await
+    }
+
+    pub async fn get_mmp_state(&self, base_coin: &str) -> Result<GetMmpStateResponse> {
+        let params = vec![("baseCoin", base_coin)];
+        self.get("/v5/account/mmp-state", &params).await
+    }
+
+    pub async fn get_smp_group(&self) -> Result<GetSmpGroupResponse> {
+        self.get("/v5/account/smp-group", &[]).await
+    }
+
+    pub async fn get_transferable_amount(
+        &self,
+        coin_name: &str,
+    ) -> Result<GetTransferableAmountResponse> {
+        let params = vec![("coinName", coin_name)];
+        self.get("/v5/account/withdrawal", &params).await
+    }
+
+    pub async fn get_user_settings(&self) -> Result<GetUserSettingsResponse> {
+        self.get("/v5/account/user-setting-config", &[]).await
+    }
+
+    pub async fn manual_borrow(&self, params: ManualBorrowParams) -> Result<ManualBorrowResponse> {
+        self.post("/v5/account/borrow", &params).await
+    }
+
+    pub async fn manual_repay(&self, params: ManualRepayParams) -> Result<ManualRepayResponse> {
+        self.post("/v5/account/repay", &params).await
+    }
+
+    pub async fn no_convert_repay(
+        &self,
+        params: NoConvertRepayParams,
+    ) -> Result<NoConvertRepayResponse> {
+        self.post("/v5/account/no-convert-repay", &params).await
+    }
+
+    pub async fn one_click_repay(
+        &self,
+        params: OneClickRepayParams,
+    ) -> Result<OneClickRepayResponse> {
+        self.post("/v5/account/quick-repayment", &params).await
+    }
+
+    pub async fn reset_mmp(&self, params: ResetMmpParams) -> Result<ResetMmpResponse> {
+        self.post("/v5/account/mmp-reset", &params).await
+    }
+
+    pub async fn set_collateral_coin(
+        &self,
+        params: SetCollateralCoinParams,
+    ) -> Result<serde_json::Value> {
+        self.post("/v5/account/set-collateral-switch", &params)
+            .await
+    }
+
+    pub async fn set_mmp(&self, params: SetMmpParams) -> Result<SetMmpResponse> {
+        self.post("/v5/account/mmp-modify", &params).await
+    }
+
+    pub async fn set_price_limit(
+        &self,
+        params: SetPriceLimitParams,
+    ) -> Result<SetPriceLimitResponse> {
+        self.post("/v5/account/set-limit-px-action", &params).await
+    }
+
+    pub async fn set_spot_hedging(
+        &self,
+        params: SetSpotHedgingParams,
+    ) -> Result<SetSpotHedgingResponse> {
+        self.post("/v5/account/set-hedging-mode", &params).await
+    }
+
+    pub async fn upgrade_to_uta_pro(&self) -> Result<UpgradeToUtaProResponse> {
+        self.post("/v5/account/upgrade-to-uta", &serde_json::json!({}))
+            .await
+    }
 }

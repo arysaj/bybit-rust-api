@@ -195,4 +195,29 @@ impl BybitClient {
 
         self.get("/v5/order/history", &params).await
     }
+
+    pub async fn dcp_set_timewindow(
+        &self,
+        params: DcpSetTimewindowParams,
+    ) -> Result<DcpSetTimewindowResponse> {
+        self.post("/v5/order/disconnected-cancel-all", &params)
+            .await
+    }
+
+    pub async fn get_spot_borrow_quota(
+        &self,
+        category: &str,
+        symbol: &str,
+        side: &str,
+    ) -> Result<GetSpotBorrowQuotaResponse> {
+        let params = vec![("category", category), ("symbol", symbol), ("side", side)];
+        self.get("/v5/order/spot-borrow-check", &params).await
+    }
+
+    pub async fn pre_check_order(
+        &self,
+        params: PreCheckOrderParams,
+    ) -> Result<PreCheckOrderResponse> {
+        self.post("/v5/order/pre-check", &params).await
+    }
 }

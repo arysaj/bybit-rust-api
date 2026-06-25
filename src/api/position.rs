@@ -178,4 +178,94 @@ impl BybitClient {
 
         self.get("/v5/execution/list", &params).await
     }
+
+    pub async fn confirm_new_risk_limit(
+        &self,
+        params: ConfirmNewRiskLimitParams,
+    ) -> Result<ConfirmNewRiskLimitResponse> {
+        self.post("/v5/position/confirm-pending-mmr", &params).await
+    }
+
+    pub async fn get_close_position(
+        &self,
+        category: &str,
+        symbol: Option<&str>,
+        start_time: Option<i64>,
+        end_time: Option<i64>,
+        limit: Option<i64>,
+        cursor: Option<&str>,
+    ) -> Result<GetClosePositionResponse> {
+        let start_time_str = start_time.map(|v| v.to_string());
+        let end_time_str = end_time.map(|v| v.to_string());
+        let limit_str = limit.map(|v| v.to_string());
+        let mut params = vec![("category", category)];
+        if let Some(s) = symbol {
+            params.push(("symbol", s));
+        }
+        if let Some(ref st) = start_time_str {
+            params.push(("startTime", st.as_str()));
+        }
+        if let Some(ref et) = end_time_str {
+            params.push(("endTime", et.as_str()));
+        }
+        if let Some(ref l) = limit_str {
+            params.push(("limit", l.as_str()));
+        }
+        if let Some(c) = cursor {
+            params.push(("cursor", c));
+        }
+        self.get("/v5/position/get-closed-positions", &params).await
+    }
+
+    pub async fn get_move_position_history(
+        &self,
+        category: Option<&str>,
+        symbol: Option<&str>,
+        start_time: Option<i64>,
+        end_time: Option<i64>,
+        status: Option<&str>,
+        block_trade_id: Option<&str>,
+        limit: Option<&str>,
+        cursor: Option<&str>,
+    ) -> Result<GetMovePositionHistoryResponse> {
+        let start_time_str = start_time.map(|v| v.to_string());
+        let end_time_str = end_time.map(|v| v.to_string());
+        let mut params: Vec<(&str, &str)> = Vec::new();
+        if let Some(c) = category {
+            params.push(("category", c));
+        }
+        if let Some(s) = symbol {
+            params.push(("symbol", s));
+        }
+        if let Some(ref st) = start_time_str {
+            params.push(("startTime", st.as_str()));
+        }
+        if let Some(ref et) = end_time_str {
+            params.push(("endTime", et.as_str()));
+        }
+        if let Some(s) = status {
+            params.push(("status", s));
+        }
+        if let Some(b) = block_trade_id {
+            params.push(("blockTradeId", b));
+        }
+        if let Some(l) = limit {
+            params.push(("limit", l));
+        }
+        if let Some(c) = cursor {
+            params.push(("cursor", c));
+        }
+        self.get("/v5/position/move-history", &params).await
+    }
+
+    pub async fn move_position(&self, params: MovePositionParams) -> Result<MovePositionResponse> {
+        self.post("/v5/position/move-positions", &params).await
+    }
+
+    pub async fn set_auto_add_margin(
+        &self,
+        params: SetAutoAddMarginParams,
+    ) -> Result<SetAutoAddMarginResponse> {
+        self.post("/v5/position/set-auto-add-margin", &params).await
+    }
 }

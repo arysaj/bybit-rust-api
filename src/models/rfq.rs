@@ -583,3 +583,131 @@ pub struct GetTradeHistoryLeg {
     pub result_message: Option<String>,
     pub reject_party: Option<String>,
 }
+
+/// Cancel all RFQs result item.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CancelAllRfqsResultItem {
+    pub rfq_id: Option<String>,
+    pub rfq_link_id: Option<String>,
+    pub code: Option<String>,
+    pub msg: Option<String>,
+}
+
+/// Public trade item.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PublicTradeItem {
+    pub rfq_id: Option<String>,
+    pub strategy_type: Option<String>,
+    pub created_at: Option<String>,
+    pub updated_at: Option<String>,
+    pub legs: Option<Vec<PublicTradeLeg>>,
+}
+
+/// Strategy type entry.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct StrategyType {
+    pub strategy_name: Option<String>,
+}
+
+/// Counterparty entry.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct Counterparty {
+    pub trader_name: Option<String>,
+    pub desk_code: Option<String>,
+    #[serde(rename = "type")]
+    pub type_: Option<String>,
+}
+
+/// RFQ realtime item.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RfqRealtimeItem {
+    pub rfq_id: Option<String>,
+    pub rfq_link_id: Option<String>,
+    pub counterparties: Option<Vec<String>>,
+    pub expires_at: Option<String>,
+    pub strategy_type: Option<String>,
+    pub status: Option<String>,
+    pub accept_other_quote_status: Option<String>,
+    pub desk_code: Option<String>,
+    pub created_at: Option<String>,
+    pub updated_at: Option<String>,
+    pub legs: Option<Vec<RfqRealtimeLeg>>,
+}
+
+/// RFQ realtime leg.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RfqRealtimeLeg {
+    pub category: Option<String>,
+    pub symbol: Option<String>,
+    pub side: Option<String>,
+    pub qty: Option<String>,
+}
+
+/// RFQ item (history).
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RfqItem {
+    pub rfq_id: Option<String>,
+    pub rfq_link_id: Option<String>,
+    pub counterparties: Option<Vec<String>>,
+    pub strategy_type: Option<String>,
+    pub expires_at: Option<String>,
+    pub status: Option<String>,
+    pub accept_other_quote_status: Option<String>,
+    pub desk_code: Option<String>,
+    pub created_at: Option<String>,
+    pub updated_at: Option<String>,
+    pub legs: Option<Vec<RfqLeg>>,
+}
+
+/// RFQ leg (history).
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct RfqLeg {
+    pub category: Option<String>,
+    pub symbol: Option<String>,
+    pub side: Option<String>,
+    pub qty: Option<String>,
+}
+
+/// Trade history item.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TradeHistoryItem {
+    pub rfq_id: Option<String>,
+    pub rfq_link_id: Option<String>,
+    pub quote_id: Option<String>,
+    pub quote_link_id: Option<String>,
+    pub quote_side: Option<String>,
+    pub strategy_type: Option<String>,
+    pub status: Option<String>,
+    pub rfq_desk_code: Option<String>,
+    pub quote_desk_code: Option<String>,
+    pub created_at: Option<String>,
+    pub updated_at: Option<String>,
+    pub legs: Option<Vec<TradeHistoryLeg>>,
+}
+
+/// Trade history leg.
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TradeHistoryLeg {
+    pub category: Option<String>,
+    pub order_id: Option<String>,
+    pub symbol: Option<String>,
+    pub side: Option<String>,
+    pub price: Option<String>,
+    pub qty: Option<String>,
+    pub mark_price: Option<String>,
+    pub exec_fee: Option<String>,
+    pub exec_id: Option<String>,
+    pub result_code: Option<i32>,
+    pub result_message: Option<String>,
+    pub reject_party: Option<String>,
+}
