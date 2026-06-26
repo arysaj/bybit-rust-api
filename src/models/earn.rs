@@ -57,20 +57,7 @@ pub struct GetAdvanceProductResult {
     pub list: Option<Vec<DualAssetsProduct>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAdvanceEarnProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetAdvanceProductResult>,
-}
+pub type GetAdvanceEarnProductResponse = GetAdvanceProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -107,20 +94,7 @@ pub struct GetProductExtraInfoResult {
     pub list: Option<Vec<ProductOffer>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAdvanceEarnProductExtraInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetProductExtraInfoResult>,
-}
+pub type GetAdvanceEarnProductExtraInfoResponse = GetProductExtraInfoResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -190,20 +164,7 @@ pub struct PlaceAdvanceOrderResult {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceAdvanceEarnOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PlaceAdvanceOrderResult>,
-}
+pub type PlaceAdvanceEarnOrderResponse = PlaceAdvanceOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -261,20 +222,7 @@ pub struct GetAdvancePositionResult {
     pub list: Option<Vec<DualAssetsPosition>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAdvanceEarnPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetAdvancePositionResult>,
-}
+pub type GetAdvanceEarnPositionResponse = GetAdvancePositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -348,20 +296,7 @@ pub struct GetAdvanceOrderResult {
     pub list: Option<Vec<DualAssetsOrder>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAdvanceEarnOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetAdvanceOrderResult>,
-}
+pub type GetAdvanceEarnOrderResponse = GetAdvanceOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -405,20 +340,7 @@ pub struct GetSmartLeverageProductResult {
     pub list: Option<Vec<SmartLeverageProduct>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSmartLeverageProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetSmartLeverageProductResult>,
-}
+pub type GetSmartLeverageProductResponse = GetSmartLeverageProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -437,20 +359,7 @@ pub struct SmartLeverageProductExtraInfo {
     pub max_investment_amount: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSmartLeverageProductExtraInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<SmartLeverageProductExtraInfo>,
-}
+pub type GetSmartLeverageProductExtraInfoResponse = SmartLeverageProductExtraInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -504,20 +413,7 @@ pub struct GetSmartLeveragePositionResult {
     pub list: Option<Vec<SmartLeveragePosition>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSmartLeveragePositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetSmartLeveragePositionResult>,
-}
+pub type GetSmartLeveragePositionResponse = GetSmartLeveragePositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -577,20 +473,7 @@ pub struct GetSmartLeverageOrderResult {
     pub list: Option<Vec<SmartLeverageOrder>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSmartLeverageOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetSmartLeverageOrderResult>,
-}
+pub type GetSmartLeverageOrderResponse = GetSmartLeverageOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -601,20 +484,7 @@ pub struct GetRedeemEstAmountListResult {
     pub list: Option<Vec<serde_json::Value>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRedeemEstAmountListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetRedeemEstAmountListResult>,
-}
+pub type GetRedeemEstAmountListResponse = GetRedeemEstAmountListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -631,20 +501,7 @@ pub struct GetDoubleWinLeverageResult {
     pub upper_price: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDoubleWinLeverageResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDoubleWinLeverageResult>,
-}
+pub type GetDoubleWinLeverageResponse = GetDoubleWinLeverageResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -665,20 +522,7 @@ pub struct PlaceTokenOrderResult {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceTokenOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PlaceTokenOrderResult>,
-}
+pub type PlaceTokenOrderResponse = PlaceTokenOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -712,20 +556,7 @@ pub struct TokenOrderListResult {
     pub list: Option<Vec<TokenOrder>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenOrderListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenOrderListResult>,
-}
+pub type TokenOrderListResponse = TokenOrderListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -742,20 +573,7 @@ pub struct TokenProduct {
     pub max_purchase_amount: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenProduct>,
-}
+pub type TokenProductResponse = TokenProduct;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -772,20 +590,7 @@ pub struct TokenPosition {
     pub account_type: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenPosition>,
-}
+pub type TokenPositionResponse = TokenPosition;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -807,20 +612,7 @@ pub struct TokenDailyYieldResult {
     pub list: Option<Vec<TokenDailyYield>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenDailyYieldResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenDailyYieldResult>,
-}
+pub type TokenDailyYieldResponse = TokenDailyYieldResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -842,20 +634,7 @@ pub struct TokenHourlyYieldResult {
     pub list: Option<Vec<TokenHourlyYield>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenHourlyYieldResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenHourlyYieldResult>,
-}
+pub type TokenHourlyYieldResponse = TokenHourlyYieldResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -875,20 +654,7 @@ pub struct TokenAprHistoryResult {
     pub list: Option<Vec<TokenAprHistory>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct TokenAprHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TokenAprHistoryResult>,
-}
+pub type TokenAprHistoryResponse = TokenAprHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -916,20 +682,7 @@ pub struct GetFixedTermProductResult {
     pub list: Option<Vec<FixedTermProduct>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetFixedTermProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetFixedTermProductResult>,
-}
+pub type GetFixedTermProductResponse = GetFixedTermProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -946,20 +699,7 @@ pub struct RedeemEstItem {
     pub slippage_rate: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSmartLeverageRedeemEstAmountListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetRedeemEstAmountListResult>,
-}
+pub type GetSmartLeverageRedeemEstAmountListResponse = GetRedeemEstAmountListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1000,20 +740,7 @@ pub struct DoubleWinProduct {
     pub price_tick_size: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDoubleWinProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDoubleWinProductResult>,
-}
+pub type GetDoubleWinProductResponse = GetDoubleWinProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1041,20 +768,7 @@ pub struct DoubleWinProductExtraInfo {
     pub max_investment_amount: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDoubleWinProductExtraInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<DoubleWinProductExtraInfo>,
-}
+pub type GetDoubleWinProductExtraInfoResponse = DoubleWinProductExtraInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1115,20 +829,7 @@ pub struct DoubleWinPosition {
     pub order_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDoubleWinPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDoubleWinPositionResult>,
-}
+pub type GetDoubleWinPositionResponse = GetDoubleWinPositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1190,20 +891,7 @@ pub struct DoubleWinOrder {
     pub to_account_type: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDoubleWinOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDoubleWinOrderResult>,
-}
+pub type GetDoubleWinOrderResponse = GetDoubleWinOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1247,20 +935,7 @@ pub struct AdvDiscountBuyProduct {
     pub expect_receive_at: Option<i64>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDiscountBuyProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDiscountBuyProductResult>,
-}
+pub type GetDiscountBuyProductResponse = GetDiscountBuyProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1301,20 +976,7 @@ pub struct DiscountBuyProductExtraInfo {
     pub offers: Option<Vec<DiscountBuyPriceOfferItem>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDiscountBuyProductExtraInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<DiscountBuyProductExtraInfo>,
-}
+pub type GetDiscountBuyProductExtraInfoResponse = DiscountBuyProductExtraInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1366,20 +1028,7 @@ pub struct AdvDiscountBuyPosition {
     pub expect_receive_at: Option<i64>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDiscountBuyPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDiscountBuyPositionResult>,
-}
+pub type GetDiscountBuyPositionResponse = GetDiscountBuyPositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1443,20 +1092,7 @@ pub struct AdvDiscountBuyOrder {
     pub refund_status: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetDiscountBuyOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetDiscountBuyOrderResult>,
-}
+pub type GetDiscountBuyOrderResponse = GetDiscountBuyOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1482,20 +1118,7 @@ pub struct PlaceFixedTermOrderParams {
     pub auto_invest: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceFixedTermOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PlaceFixedTermOrderResult>,
-}
+pub type PlaceFixedTermOrderResponse = PlaceFixedTermOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1514,20 +1137,7 @@ pub struct RedeemFixedTermParams {
     pub position_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RedeemFixedTermResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RedeemFixedTermResult>,
-}
+pub type RedeemFixedTermResponse = RedeemFixedTermResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1540,20 +1150,7 @@ pub struct RedeemFixedTermResult {
     pub est_redeem_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetFixedTermPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetFixedTermPositionResult>,
-}
+pub type GetFixedTermPositionResponse = GetFixedTermPositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1589,20 +1186,7 @@ pub struct FixedTermPosition {
     pub auto_invest: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetFixedTermOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetFixedTermOrderResult>,
-}
+pub type GetFixedTermOrderResponse = GetFixedTermOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1647,20 +1231,7 @@ pub struct SetFixedTermAutoInvestParams {
     pub status: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RwaProductListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RwaProductListResult>,
-}
+pub type RwaProductListResponse = RwaProductListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1701,20 +1272,7 @@ pub struct PlaceRwaOrderParams {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceRwaOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PlaceRwaOrderResult>,
-}
+pub type PlaceRwaOrderResponse = PlaceRwaOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1725,20 +1283,7 @@ pub struct PlaceRwaOrderResult {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RwaPositionListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RwaPositionListResult>,
-}
+pub type RwaPositionListResponse = RwaPositionListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1764,20 +1309,7 @@ pub struct RwaPosition {
     pub status: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RwaOrderListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RwaOrderListResult>,
-}
+pub type RwaOrderListResponse = RwaOrderListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1813,20 +1345,7 @@ pub struct RwaOrder {
     pub updated_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RwaNavChartResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RwaNavChartResult>,
-}
+pub type RwaNavChartResponse = RwaNavChartResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1844,20 +1363,7 @@ pub struct RwaNavPoint {
     pub nav: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetProductResult>,
-}
+pub type GetProductResponse = GetProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1907,20 +1413,7 @@ pub struct PlaceEarnOrderParams {
     pub interest_card: Option<serde_json::Value>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PlaceOrderResult>,
-}
+pub type PlaceOrderResponse = PlaceOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1931,20 +1424,7 @@ pub struct PlaceOrderResult {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct OrderHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<OrderHistoryResult>,
-}
+pub type OrderHistoryResponse = OrderHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1980,20 +1460,7 @@ pub struct EarnOrderHistoryItem {
     pub updated_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PositionResult>,
-}
+pub type PositionResponse = PositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2025,20 +1492,7 @@ pub struct EarnPositionItem {
     pub updated_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct YieldHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<YieldHistoryResult>,
-}
+pub type YieldHistoryResponse = YieldHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2116,16 +1570,7 @@ pub struct ClaimLiquidityInterestParams {
     pub product_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct HourlyYieldResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: HourlyYieldResult,
-}
+pub type HourlyYieldResponse = HourlyYieldResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2153,16 +1598,7 @@ pub struct HourlyYieldRecord {
     pub created_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AprHistoryResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: AprHistoryResult,
-}
+pub type AprHistoryResponse = AprHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2180,16 +1616,7 @@ pub struct AprRecord {
     pub apr_e8: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ListCouponsResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: ListCouponsResult,
-}
+pub type ListCouponsResponse = ListCouponsResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2217,16 +1644,7 @@ pub struct EarnCoupon {
     pub end_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetHoldToEarnProductResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetHoldToEarnProductResult,
-}
+pub type GetHoldToEarnProductResponse = GetHoldToEarnProductResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2254,16 +1672,7 @@ pub struct HoldToEarnProduct {
     pub apy: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetHoldToEarnYieldHistoryResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetHoldToEarnYieldHistoryResult,
-}
+pub type GetHoldToEarnYieldHistoryResponse = GetHoldToEarnYieldHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2289,16 +1698,7 @@ pub struct HoldToEarnYieldRecord {
     pub created_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLMProductsResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetLMProductsResult,
-}
+pub type GetLMProductsResponse = GetLMProductsResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2336,16 +1736,7 @@ pub struct LMProduct {
     pub precision: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct LMOrderResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: LMOrderResult,
-}
+pub type LMOrderResponse = LMOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2356,16 +1747,7 @@ pub struct LMOrderResult {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLMPositionsResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetLMPositionsResult,
-}
+pub type GetLMPositionsResponse = GetLMPositionsResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2399,16 +1781,7 @@ pub struct LMPosition {
     pub created_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLMOrdersResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetLMOrdersResult,
-}
+pub type GetLMOrdersResponse = GetLMOrdersResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2450,16 +1823,7 @@ pub struct LMOrder {
     pub updated_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLMYieldRecordsResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: GetLMYieldRecordsResult,
-}
+pub type GetLMYieldRecordsResponse = GetLMYieldRecordsResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2491,38 +1855,11 @@ pub struct LMYieldRecord {
     pub created_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenOrderListResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenOrderListResult,
-}
+pub type GetTokenOrderListResponse = TokenOrderListResult;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenProductResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenProduct,
-}
+pub type GetTokenProductResponse = TokenProduct;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenPositionResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenPosition,
-}
+pub type GetTokenPositionResponse = TokenPosition;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2537,38 +1874,11 @@ pub struct DailyYieldRecord {
     pub created_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenDailyYieldResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenDailyYieldResult,
-}
+pub type GetTokenDailyYieldResponse = TokenDailyYieldResult;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenHourlyYieldResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenHourlyYieldResult,
-}
+pub type GetTokenHourlyYieldResponse = TokenHourlyYieldResult;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTokenHistoricalAprResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-    pub result: TokenAprHistoryResult,
-}
+pub type GetTokenHistoricalAprResponse = TokenAprHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2709,230 +2019,35 @@ pub struct PwmFundTransferParams {
     pub coin: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLMLiquidationRecordsResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type GetLMLiquidationRecordsResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstListFundsResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstListFundsResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstSettleProfitResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstSettleProfitResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstCreateFundResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstCreateFundResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstCreateInvestmentPlanResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstCreateInvestmentPlanResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstGetInvestmentPlansResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstGetInvestmentPlansResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstManageInvestmentPlanResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstManageInvestmentPlanResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstListOrdersResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstListOrdersResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstManageOrderResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstManageOrderResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInstCreateSubAccountResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmInstCreateSubAccountResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmFundTransferResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmFundTransferResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmQueryFundTransferResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmQueryFundTransferResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmListInvestmentPlansResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmListInvestmentPlansResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmGetPlanDetailResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmGetPlanDetailResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmGetNewPlanDetailResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub ret_ext_info: serde_json::Value,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(default)]
-    pub result: serde_json::Value,
-}
+pub type PwmGetNewPlanDetailResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2951,20 +2066,7 @@ pub struct SetAutoInvestRequest {
     pub status: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRwaProductListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetRwaProductListResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -2981,65 +2083,13 @@ pub struct PlaceRwaOrderRequest {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRwaPositionListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetRwaPositionListResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRwaOrderListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetRwaOrderListResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRwaNavChartResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetRwaNavChartResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnProductResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnProductResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3075,50 +2125,11 @@ pub struct PwmClaimParams {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmClaimResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmClaimResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmAssetTrendResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmAssetTrendResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmFundNavResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmFundNavResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3129,20 +2140,7 @@ pub struct PwmSubscribeParams {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmSubscribeResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmSubscribeResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3156,20 +2154,7 @@ pub struct PwmInvestMoreParams {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmInvestMoreResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmInvestMoreResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3186,50 +2171,11 @@ pub struct PwmRedeemParams {
     pub position_id: Option<i64>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmRedeemResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmRedeemResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmListOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmListOrderResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmListProductCardsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmListProductCardsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3240,35 +2186,9 @@ pub struct PwmCreateCustomPlanParams {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmCreateCustomPlanResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmCreateCustomPlanResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PlaceEarnOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PlaceEarnOrderResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3299,20 +2219,7 @@ pub struct EarnOrder {
     pub estimate_stake_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnOrderHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnOrderHistoryResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3345,20 +2252,7 @@ pub struct EarnPosition {
     pub auto_reinvest: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnPositionResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnPositionResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3385,35 +2279,9 @@ pub struct YieldRecord {
     pub created_at: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnYieldHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnYieldHistoryResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnHourlyYieldHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnHourlyYieldHistoryResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3424,20 +2292,7 @@ pub struct ModifyEarnPositionRequest {
     pub auto_reinvest: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetEarnAprHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetEarnAprHistoryResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3468,20 +2323,7 @@ pub struct AwardCard {
     pub category: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ListEarnCouponsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type ListEarnCouponsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3527,20 +2369,7 @@ pub struct CoinApy {
     pub reward: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLiquidityMiningProductsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetLiquidityMiningProductsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3589,20 +2418,7 @@ pub struct AddMarginRequest {
     pub quote_account_type: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AddLiquidityResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type AddLiquidityResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3610,50 +2426,11 @@ pub struct ClaimInterestRequest {
     pub product_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLiquidityMiningPositionsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetLiquidityMiningPositionsResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLiquidityMiningOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetLiquidityMiningOrdersResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLiquidityMiningYieldRecordsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetLiquidityMiningYieldRecordsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3672,20 +2449,7 @@ pub struct LMLiquidationRecord {
     pub liquidation_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetLiquidityMiningLiquidationRecordsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetLiquidityMiningLiquidationRecordsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -3769,18 +2533,10 @@ pub struct PwmInstInvestmentPlanInfo {
     pub created_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ClaimLiquidityInterestResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+// `ClaimLiquidityInterestResponse` carries no typed result body — the endpoint
+// returns only the envelope. After `client.rs::parse_response` unwraps the
+// envelope, the inner `result` is whatever Bybit returns (often `{}`).
+pub type ClaimLiquidityInterestResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -4049,20 +2805,7 @@ pub struct PwmFundTransferRecord {
     pub coin: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PwmQueryFundTransferResultResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PwmQueryFundTransferResultResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

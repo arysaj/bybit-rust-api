@@ -279,20 +279,7 @@ pub struct Execution {
     pub exec_time: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AddReduceMarginResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<AddReduceMarginResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type AddReduceMarginResponse = AddReduceMarginResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -345,20 +332,7 @@ pub struct AddReduceMarginResult {
     pub updated_time: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ConfirmNewRiskLimitResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<serde_json::Value>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type ConfirmNewRiskLimitResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -367,20 +341,7 @@ pub struct ConfirmNewRiskLimitParams {
     pub symbol: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetClosePositionResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<GetClosePositionResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type GetClosePositionResponse = GetClosePositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -422,20 +383,7 @@ pub struct GetClosePositionItem {
     pub close_time: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetClosedPnlResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<GetClosedPnlResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type GetClosedPnlResponse = GetClosedPnlResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -491,20 +439,7 @@ pub struct ClosedPnlItem {
     pub updated_time: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetMovePositionHistoryResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<GetMovePositionHistoryResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type GetMovePositionHistoryResponse = GetMovePositionHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -552,20 +487,7 @@ pub struct GetMovePositionHistoryItem {
     pub reject_party: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetPositionInfoResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<GetPositionInfoResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type GetPositionInfoResponse = GetPositionInfoResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -663,20 +585,7 @@ pub struct PositionInfo {
     pub updated_time: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct MovePositionResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<MovePositionResult>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type MovePositionResponse = MovePositionResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -707,20 +616,7 @@ pub struct MovePositionParams {
     pub list: Vec<MovePositionLeg>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SetAutoAddMarginResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<serde_json::Value>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type SetAutoAddMarginResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -732,32 +628,6 @@ pub struct SetAutoAddMarginParams {
     pub position_idx: Option<i32>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SetLeverageResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<serde_json::Value>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type SetLeverageResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SwitchPositionModeResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(default)]
-    pub result: Option<serde_json::Value>,
-    #[serde(default)]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-}
+pub type SwitchPositionModeResponse = serde_json::Value;

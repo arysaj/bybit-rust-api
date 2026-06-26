@@ -32,20 +32,7 @@ pub struct AffiliateSubListResult {
     pub next_page_cursor: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAffiliateSubListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<AffiliateSubListResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetAffiliateSubListResponse = AffiliateSubListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -118,20 +105,7 @@ pub struct AffiliateUserListResult {
     pub next_page_cursor: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAffiliateUserListResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<AffiliateUserListResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetAffiliateUserListResponse = AffiliateUserListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -170,28 +144,9 @@ pub struct AffiliateUserInfoResult {
     pub vol_update_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAffiliateUserInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<AffiliateUserInfoResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetAffiliateUserInfoResponse = AffiliateUserInfoResult;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetAffiliateCustomOpenInfoV5Response {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    pub result: AffiliateCustomOpenInfoResult,
-}
+pub type GetAffiliateCustomOpenInfoV5Response = AffiliateCustomOpenInfoResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -240,14 +195,7 @@ pub struct AffiliateCustomOpenInfoResult {
     pub card_ftt: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ErrorResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type ErrorResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -261,18 +209,7 @@ pub struct CreateSubApiKeyParams {
     pub note: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateSubApiKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type CreateSubApiKeyResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -289,18 +226,7 @@ pub struct CreateSubMemberParams {
     pub note: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateSubMemberResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type CreateSubMemberResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -309,18 +235,7 @@ pub struct DeleteApiKeyParams {
     pub apikey: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DeleteApiKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type DeleteApiKeyResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -330,18 +245,7 @@ pub struct DeleteSubApiKeyParams {
     pub apikey: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DeleteSubApiKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type DeleteSubApiKeyResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -349,18 +253,7 @@ pub struct DeleteSubMemberV5Params {
     pub subuid: i64,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DeleteSubMemberV5Response {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type DeleteSubMemberV5Response = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -369,70 +262,15 @@ pub struct FrozenSubMemberParams {
     pub frozen: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct FrozenSubMemberResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type FrozenSubMemberResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ListSubApiKeysV5Response {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type ListSubApiKeysV5Response = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryApiKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryApiKeyResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryEscrowSubMembersV5Response {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryEscrowSubMembersV5Response = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryReferralsResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryReferralsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -449,31 +287,9 @@ pub struct ReferralRecord {
     pub updated_at: Option<i64>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QuerySubMembersV5Response {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QuerySubMembersV5Response = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QuerySubMembersResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QuerySubMembersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -482,44 +298,11 @@ pub struct SignAgreementParams {
     pub agree: bool,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SignAgreementResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type SignAgreementResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct UpdateAPIKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type UpdateAPIKeyResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct UpdateSubAPIKeyResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type UpdateSubAPIKeyResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

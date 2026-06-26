@@ -206,11 +206,16 @@ impl BybitClient {
 
     pub async fn get_spot_borrow_quota(
         &self,
-        category: &str,
+        category: Category,
         symbol: &str,
         side: &str,
     ) -> Result<GetSpotBorrowQuotaResponse> {
-        let params = vec![("category", category), ("symbol", symbol), ("side", side)];
+        let cat_str = category.to_string();
+        let params = vec![
+            ("category", cat_str.as_str()),
+            ("symbol", symbol),
+            ("side", side),
+        ];
         self.get("/v5/order/spot-borrow-check", &params).await
     }
 

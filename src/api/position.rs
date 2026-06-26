@@ -3,6 +3,7 @@
 use crate::client::BybitClient;
 use crate::error::Result;
 use crate::models::position::*;
+use crate::models::Category;
 use crate::models::*;
 
 impl BybitClient {
@@ -188,17 +189,18 @@ impl BybitClient {
 
     pub async fn get_close_position(
         &self,
-        category: &str,
+        category: Category,
         symbol: Option<&str>,
         start_time: Option<i64>,
         end_time: Option<i64>,
         limit: Option<i64>,
         cursor: Option<&str>,
     ) -> Result<GetClosePositionResponse> {
+        let cat_str = category.to_string();
         let start_time_str = start_time.map(|v| v.to_string());
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
-        let mut params = vec![("category", category)];
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(s) = symbol {
             params.push(("symbol", s));
         }
@@ -219,7 +221,7 @@ impl BybitClient {
 
     pub async fn get_move_position_history(
         &self,
-        category: Option<&str>,
+        category: Option<Category>,
         symbol: Option<&str>,
         start_time: Option<i64>,
         end_time: Option<i64>,
@@ -228,11 +230,12 @@ impl BybitClient {
         limit: Option<&str>,
         cursor: Option<&str>,
     ) -> Result<GetMovePositionHistoryResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let start_time_str = start_time.map(|v| v.to_string());
         let end_time_str = end_time.map(|v| v.to_string());
         let mut params: Vec<(&str, &str)> = Vec::new();
-        if let Some(c) = category {
-            params.push(("category", c));
+        if let Some(ref c) = cat_str {
+            params.push(("category", c.as_str()));
         }
         if let Some(s) = symbol {
             params.push(("symbol", s));

@@ -423,20 +423,7 @@ pub struct CancelledOrder {
     pub order_link_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct DcpSetTimewindowResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type DcpSetTimewindowResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -446,20 +433,7 @@ pub struct DcpSetTimewindowParams {
     pub time_window: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SetDcpResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type SetDcpResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -469,20 +443,7 @@ pub struct SetDcpParams {
     pub time_window: i32,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PreCheckOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type PreCheckOrderResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -526,20 +487,7 @@ pub struct PreCheckOrderParams {
     pub order_iv: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetSpotBorrowQuotaResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<SpotBorrowQuotaResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetSpotBorrowQuotaResponse = SpotBorrowQuotaResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -560,20 +508,7 @@ pub struct SpotBorrowQuotaResult {
     pub borrow_coin: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AmendOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<AmendOrderResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type AmendOrderResponse = AmendOrderResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -625,20 +560,7 @@ pub struct BatchAmendOrderItem {
     pub sl_limit_price: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BatchAmendOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type BatchAmendOrdersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -657,20 +579,7 @@ pub struct BatchCancelOrderItem {
     pub order_link_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BatchCancelOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type BatchCancelOrdersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -736,35 +645,9 @@ pub struct BatchOrderItem {
     pub mmp: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct BatchCreateOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type BatchCreateOrdersResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelAllOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type CancelAllOrdersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -795,20 +678,7 @@ pub struct CancelOrderRequest {
     pub order_filter: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type CancelOrderResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -878,35 +748,9 @@ pub struct CreateOrderRequest {
     pub rpi_taker_access: Option<bool>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateOrderResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type CreateOrderResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetOpenOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetOpenOrdersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1007,20 +851,7 @@ pub struct OrderDetail {
     pub updated_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetOrderHistoryResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type GetOrderHistoryResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

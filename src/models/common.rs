@@ -116,6 +116,19 @@ pub enum AccountType {
     FUND,
 }
 
+impl std::fmt::Display for AccountType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::CONTRACT => write!(f, "CONTRACT"),
+            Self::UNIFIED => write!(f, "UNIFIED"),
+            Self::SPOT => write!(f, "SPOT"),
+            Self::INVESTMENT => write!(f, "INVESTMENT"),
+            Self::OPTION => write!(f, "OPTION"),
+            Self::FUND => write!(f, "FUND"),
+        }
+    }
+}
+
 /// Kline interval.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum Interval {
@@ -203,14 +216,29 @@ pub enum PositionMode {
 }
 
 /// Margin mode.
+///
+/// Wire protocol values follow Bybit V5 `/v5/account/set-margin-mode`:
+/// - `ISOLATED_MARGIN`
+/// - `REGULAR_MARGIN` (mapped from [`Self::CROSS`])
+/// - `PORTFOLIO_MARGIN` (mapped from [`Self::PORTFOLIO`])
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MarginMode {
-    /// Cross margin
+    /// Cross margin (wire value: `REGULAR_MARGIN`)
     CROSS,
-    /// Isolated margin
+    /// Isolated margin (wire value: `ISOLATED_MARGIN`)
     ISOLATED,
-    /// Portfolio margin
+    /// Portfolio margin (wire value: `PORTFOLIO_MARGIN`)
     PORTFOLIO,
+}
+
+impl std::fmt::Display for MarginMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::CROSS => write!(f, "REGULAR_MARGIN"),
+            Self::ISOLATED => write!(f, "ISOLATED_MARGIN"),
+            Self::PORTFOLIO => write!(f, "PORTFOLIO_MARGIN"),
+        }
+    }
 }
 
 /// TP/SL mode.

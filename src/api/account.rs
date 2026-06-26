@@ -11,7 +11,7 @@ impl BybitClient {
     /// # Arguments
     /// * `account_type` - Account type (UNIFIED, CONTRACT, etc.)
     pub async fn get_wallet_balance(&self, account_type: AccountType) -> Result<WalletBalance> {
-        let account_type_str = format!("{:?}", account_type);
+        let account_type_str = account_type.to_string();
         let params = vec![("accountType", account_type_str.as_str())];
 
         self.get("/v5/account/wallet-balance", &params).await
@@ -65,9 +65,8 @@ impl BybitClient {
     /// # Arguments
     /// * `margin_mode` - Margin mode (REGULAR_MARGIN, PORTFOLIO_MARGIN)
     pub async fn set_margin_mode(&self, margin_mode: MarginMode) -> Result<serde_json::Value> {
-        let mode_str = format!("{:?}", margin_mode);
         let params = SetMarginModeParams {
-            set_margin_mode: mode_str,
+            set_margin_mode: margin_mode.to_string(),
         };
 
         self.post("/v5/account/set-margin-mode", &params).await
@@ -117,13 +116,14 @@ impl BybitClient {
 
     pub async fn get_account_instruments(
         &self,
-        category: &str,
+        category: Category,
         symbol: Option<&str>,
         limit: Option<u32>,
         cursor: Option<&str>,
     ) -> Result<GetAccountInstrumentsResponse> {
+        let cat_str = category.to_string();
         let limit_str;
-        let mut params = vec![("category", category)];
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(s) = symbol {
             params.push(("symbol", s));
         }

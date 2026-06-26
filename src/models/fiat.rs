@@ -2,16 +2,7 @@ use serde::{Deserialize, Serialize};
 
 use crate::models::earn::PriceQuote;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreatePayResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<CreatePayResult>,
-}
+pub type CreatePayResponse = CreatePayResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -32,16 +23,7 @@ pub struct CreatePayResult {
     pub customer: Option<Customer>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PayResultResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PayResultResult>,
-}
+pub type PayResultResponse = PayResultResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -52,16 +34,7 @@ pub struct PayResultResult {
     pub customer: Option<Customer>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct MockStatusResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<MockStatusResult>,
-}
+pub type MockStatusResponse = MockStatusResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -70,16 +43,7 @@ pub struct MockStatusResult {
     pub order: Option<PayOrder>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct FxConvertResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<FxConvertResult>,
-}
+pub type FxConvertResponse = FxConvertResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -92,16 +56,7 @@ pub struct FxConvertResult {
     pub settle_amount: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct RefundResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<RefundResponseResult>,
-}
+pub type RefundResponse = RefundResponseResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -110,16 +65,7 @@ pub struct RefundResponseResult {
     pub refund_orders: Option<Vec<RefundOrder>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct PayoutResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<PayoutResponseResult>,
-}
+pub type PayoutResponse = PayoutResponseResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -882,20 +828,7 @@ pub struct CoinListResult {
     pub cryptos: Option<Vec<CryptoCoin>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryCoinListResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<CoinListResult>,
-}
+pub type QueryCoinListResponse = CoinListResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -923,20 +856,7 @@ pub struct ReferencePriceResult {
     pub sells: Option<Vec<PriceQuote>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetReferencePriceResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<ReferencePriceResult>,
-}
+pub type GetReferencePriceResponse = ReferencePriceResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -973,20 +893,7 @@ pub struct QuoteApplyResult {
     pub expired_time: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ApplyQuoteResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<QuoteApplyResult>,
-}
+pub type ApplyQuoteResponse = QuoteApplyResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1008,20 +915,7 @@ pub struct TradeExecuteResult {
     pub merchant_request_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ConfirmQuoteResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TradeExecuteResult>,
-}
+pub type ConfirmQuoteResponse = TradeExecuteResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1052,20 +946,7 @@ pub struct TradeInfo {
     pub sub_user_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryTradeResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TradeInfo>,
-}
+pub type QueryTradeResponse = TradeInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1074,20 +955,7 @@ pub struct TradeHistoryResult {
     pub list: Option<Vec<TradeInfo>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryTradeHistoryResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<TradeHistoryResult>,
-}
+pub type QueryTradeHistoryResponse = TradeHistoryResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1113,36 +981,9 @@ pub struct BalanceInfo {
     pub currency: Option<CurrencyInfo>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryBalanceResponse {
-    #[serde(default)]
-    pub ret_code: i32,
-    #[serde(default)]
-    pub ret_msg: String,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(default)]
-    pub time: i64,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type QueryBalanceResponse = serde_json::Value;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct MarkOrderAsPaidResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ext_code: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time_now: Option<String>,
-}
+pub type MarkOrderAsPaidResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1173,16 +1014,7 @@ pub struct TradingPreferenceSet {
     pub has_national_limit: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetCoinBalanceResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetCoinBalanceResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1196,15 +1028,7 @@ pub struct GetAdsRequest {
     pub size: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetAdsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetAdsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1225,15 +1049,7 @@ pub struct PostAdRequest {
     pub item_type: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct PostAdResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type PostAdResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1258,15 +1074,7 @@ pub struct UpdateAdRequest {
     pub payment_period: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UpdateAdResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type UpdateAdResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1346,15 +1154,7 @@ pub struct AdItem {
     pub payment_terms: Option<Vec<serde_json::Value>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetMyAdsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetMyAdsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1362,15 +1162,7 @@ pub struct GetAdDetailRequest {
     pub item_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetMyAdDetailsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetMyAdDetailsResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1428,15 +1220,7 @@ pub struct GetAllOrdersRequest {
     pub side: Option<i32>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetPendingOrdersResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetPendingOrdersResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1480,15 +1264,7 @@ pub struct PaymentTermItem {
     pub qrcode: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetOrderDetailResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<serde_json::Value>,
-}
+pub type GetOrderDetailResponse = serde_json::Value;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1504,15 +1280,7 @@ pub struct ReleaseAssetsRequest {
     pub order_id: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct UploadChatFileResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<UploadFileResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-}
+pub type UploadChatFileResponse = UploadFileResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1534,15 +1302,7 @@ pub struct GetChatMessageParams {
     pub size: String,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetChatMessagesResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<GetChatMessageResult>,
-}
+pub type GetChatMessagesResponse = GetChatMessageResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct GetChatMessageResult {
@@ -1639,15 +1399,7 @@ pub struct GetCounterpartyInfoParams {
     pub order_id: Option<String>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetCounterpartyUserInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<UserInfo>,
-}
+pub type GetCounterpartyUserInfoResponse = UserInfo;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -1712,30 +1464,9 @@ pub struct PaymentMethod {
     pub currency_balance: Option<Vec<String>>,
 }
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct GetUserPaymentResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<Vec<PaymentMethod>>,
-}
+pub type GetUserPaymentResponse = Vec<PaymentMethod>;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryFundingDetailApiResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<FundingDetailApiResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryFundingDetailApiResponse = FundingDetailApiResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]

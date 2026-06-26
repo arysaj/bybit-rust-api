@@ -3,20 +3,7 @@
 use serde::{Deserialize, Serialize};
 
 /// Response for querying broker account info.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryBrokerAccountInfoResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<BrokerAccountInfoResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryBrokerAccountInfoResponse = BrokerAccountInfoResult;
 
 /// Broker account info result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -57,20 +44,7 @@ pub struct MarkupFeeRebateRate {
 }
 
 /// Response for querying broker all UID details.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryBrokerAllUidDetailsResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<QueryBrokerAllUidResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryBrokerAllUidDetailsResponse = QueryBrokerAllUidResult;
 
 /// Result payload for querying broker all UID details.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -95,20 +69,7 @@ pub struct ApiLimitInfo {
 }
 
 /// Response for querying broker capacity.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryBrokerCapResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<QueryBrokerCapResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryBrokerCapResponse = QueryBrokerCapResult;
 
 /// Result payload for querying broker capacity.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -150,20 +111,7 @@ pub struct ApiLimitInfoRequest {
 }
 
 /// Response for setting broker API limits.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct SetBrokerApiLimitResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<SetApiLimitResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type SetBrokerApiLimitResponse = SetApiLimitResult;
 
 /// Result payload for setting broker API limits.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -190,20 +138,7 @@ pub struct ApiLimitInfoResult {
 }
 
 /// Response for querying broker earnings.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct QueryBrokerEarningResponse {
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_code: Option<i32>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_msg: Option<String>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub result: Option<BrokerEarningResult>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub ret_ext_info: Option<serde_json::Value>,
-    #[serde(skip_serializing_if = "Option::is_none")]
-    pub time: Option<i64>,
-}
+pub type QueryBrokerEarningResponse = BrokerEarningResult;
 
 /// Result payload for broker earnings.
 #[derive(Debug, Clone, Serialize, Deserialize)]

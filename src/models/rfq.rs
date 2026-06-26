@@ -10,15 +10,7 @@ pub struct AcceptNonLpQuoteParams {
 }
 
 /// Accept non-LP quote response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct AcceptNonLpQuoteResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<AcceptNonLpQuoteResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type AcceptNonLpQuoteResponse = AcceptNonLpQuoteResult;
 
 /// Accept non-LP quote result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -33,15 +25,7 @@ pub struct AcceptNonLpQuoteResult {
 pub struct CancelAllQuotesParams {}
 
 /// Cancel all quotes response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelAllQuotesResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<Vec<CancelAllQuotesResultItem>>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CancelAllQuotesResponse = Vec<CancelAllQuotesResultItem>;
 
 /// Cancel all quotes result item.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -60,15 +44,7 @@ pub struct CancelAllQuotesResultItem {
 pub struct CancelAllRfqsParams {}
 
 /// Cancel all RFQs response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelAllRfqsResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<Vec<CancelAllRfqsResult>>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CancelAllRfqsResponse = Vec<CancelAllRfqsResult>;
 
 /// Cancel all RFQs result item.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -93,15 +69,7 @@ pub struct CancelQuoteParams {
 }
 
 /// Cancel quote response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelQuoteResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<CancelQuoteResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CancelQuoteResponse = CancelQuoteResult;
 
 /// Cancel quote result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -123,15 +91,7 @@ pub struct CancelRfqParams {
 }
 
 /// Cancel RFQ response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CancelRfqResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<CancelRfqResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CancelRfqResponse = CancelRfqResult;
 
 /// Cancel RFQ result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -170,15 +130,7 @@ pub struct QuoteLeg {
 }
 
 /// Create quote response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateQuoteResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<CreateQuoteResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CreateQuoteResponse = CreateQuoteResult;
 
 /// Create quote result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -217,15 +169,7 @@ pub struct CreateRfqLeg {
 }
 
 /// Create RFQ response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct CreateRfqResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<CreateRfqResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type CreateRfqResponse = CreateRfqResult;
 
 /// Create RFQ result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -248,15 +192,7 @@ pub struct ExecuteQuoteParams {
 }
 
 /// Execute quote response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct ExecuteQuoteResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<ExecuteQuoteResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type ExecuteQuoteResponse = ExecuteQuoteResult;
 
 /// Execute quote result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -269,15 +205,7 @@ pub struct ExecuteQuoteResult {
 }
 
 /// Get public trades response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetPublicTradesResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetPublicTradesResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetPublicTradesResponse = GetPublicTradesResult;
 
 /// Get public trades result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -311,15 +239,7 @@ pub struct PublicTradeLeg {
 }
 
 /// Get quotes realtime response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetQuotesRealtimeResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetQuotesRealtimeResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetQuotesRealtimeResponse = GetQuotesRealtimeResult;
 
 /// Get quotes realtime result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -357,15 +277,7 @@ pub struct QuoteItemLeg {
 }
 
 /// Get quotes response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetQuotesResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetQuotesResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetQuotesResponse = GetQuotesResult;
 
 /// Get quotes result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -394,15 +306,7 @@ pub struct QuoteItem {
 }
 
 /// Get RFQ config response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRfqConfigResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetRfqConfigResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetRfqConfigResponse = GetRfqConfigResult;
 
 /// Get RFQ config result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -439,15 +343,7 @@ pub struct RfqCounterparty {
 }
 
 /// Get RFQs realtime response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRfqsRealtimeResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetRfqsRealtimeResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetRfqsRealtimeResponse = GetRfqsRealtimeResult;
 
 /// Get RFQs realtime result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -484,15 +380,7 @@ pub struct GetRfqsRealtimeLeg {
 }
 
 /// Get RFQs response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetRfqsResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetRfqsResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetRfqsResponse = GetRfqsResult;
 
 /// Get RFQs result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -530,15 +418,7 @@ pub struct GetRfqsLeg {
 }
 
 /// Get trade history response.
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
-pub struct GetTradeHistoryResponse {
-    pub ret_code: Option<i32>,
-    pub ret_msg: Option<String>,
-    pub result: Option<GetTradeHistoryResult>,
-    pub ret_ext_info: Option<serde_json::Value>,
-    pub time: Option<i64>,
-}
+pub type GetTradeHistoryResponse = GetTradeHistoryResult;
 
 /// Get trade history result payload.
 #[derive(Debug, Clone, Serialize, Deserialize)]

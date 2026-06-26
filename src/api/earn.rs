@@ -3,6 +3,7 @@
 use crate::client::BybitClient;
 use crate::error::Result;
 use crate::models::earn::*;
+use crate::models::Category;
 
 impl BybitClient {
     pub async fn add_liquidity(&self, params: AddLiquidityParams) -> Result<AddLiquidityResponse> {
@@ -30,7 +31,7 @@ impl BybitClient {
 
     pub async fn get_advance_earn_order(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<i64>,
         order_id: Option<&str>,
         order_link_id: Option<&str>,
@@ -44,7 +45,8 @@ impl BybitClient {
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(ref v) = product_id_str {
             params.push(("productId", v.as_str()));
         }
@@ -72,7 +74,7 @@ impl BybitClient {
 
     pub async fn get_advance_earn_position(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<i64>,
         coin: Option<&str>,
         limit: Option<i64>,
@@ -81,7 +83,8 @@ impl BybitClient {
         let product_id_str = product_id.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(ref v) = product_id_str {
             params.push(("productId", v.as_str()));
         }
@@ -100,11 +103,12 @@ impl BybitClient {
 
     pub async fn get_advance_earn_product(
         &self,
-        category: &str,
+        category: Category,
         coin: Option<&str>,
         duration: Option<&str>,
     ) -> Result<GetAdvanceEarnProductResponse> {
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(v) = coin {
             params.push(("coin", v));
         }
@@ -117,12 +121,13 @@ impl BybitClient {
 
     pub async fn get_advance_earn_product_extra_info(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<i64>,
     ) -> Result<GetAdvanceEarnProductExtraInfoResponse> {
         let product_id_str = product_id.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(ref v) = product_id_str {
             params.push(("productId", v.as_str()));
         }
@@ -152,15 +157,16 @@ impl BybitClient {
 
     pub async fn get_earn_apr_history(
         &self,
-        category: &str,
+        category: Category,
         product_id: &str,
         start_time: i64,
         end_time: i64,
     ) -> Result<GetEarnAprHistoryResponse> {
+        let cat_str = category.to_string();
         let start_time_str = start_time.to_string();
         let end_time_str = end_time.to_string();
         let params = vec![
-            ("category", category),
+            ("category", cat_str.as_str()),
             ("productId", product_id),
             ("startTime", start_time_str.as_str()),
             ("endTime", end_time_str.as_str()),
@@ -171,7 +177,7 @@ impl BybitClient {
 
     pub async fn get_earn_hourly_yield_history(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<&str>,
         start_time: Option<i64>,
         end_time: Option<i64>,
@@ -182,7 +188,8 @@ impl BybitClient {
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(v) = product_id {
             params.push(("productId", v));
         }
@@ -204,7 +211,7 @@ impl BybitClient {
 
     pub async fn get_earn_order_history(
         &self,
-        category: &str,
+        category: Category,
         order_id: Option<&str>,
         order_link_id: Option<&str>,
         product_id: Option<&str>,
@@ -217,7 +224,8 @@ impl BybitClient {
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(v) = order_id {
             params.push(("orderId", v));
         }
@@ -245,11 +253,12 @@ impl BybitClient {
 
     pub async fn get_earn_position(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<&str>,
         coin: Option<&str>,
     ) -> Result<GetEarnPositionResponse> {
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(v) = product_id {
             params.push(("productId", v));
         }
@@ -262,10 +271,11 @@ impl BybitClient {
 
     pub async fn get_earn_product(
         &self,
-        category: &str,
+        category: Category,
         coin: Option<&str>,
     ) -> Result<GetEarnProductResponse> {
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(v) = coin {
             params.push(("coin", v));
         }
@@ -275,7 +285,7 @@ impl BybitClient {
 
     pub async fn get_earn_yield_history(
         &self,
-        category: &str,
+        category: Category,
         product_id: Option<i64>,
         start_time: Option<i64>,
         end_time: Option<i64>,
@@ -287,7 +297,8 @@ impl BybitClient {
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
 
-        let mut params = vec![("category", category)];
+        let cat_str = category.to_string();
+        let mut params = vec![("category", cat_str.as_str())];
         if let Some(ref v) = product_id_str {
             params.push(("productId", v.as_str()));
         }
@@ -311,13 +322,14 @@ impl BybitClient {
         &self,
         order_type: Option<&str>,
         product_id: Option<&str>,
-        category: Option<&str>,
+        category: Option<Category>,
         order_id: Option<&str>,
         start_time: Option<i64>,
         end_time: Option<i64>,
         limit: Option<i64>,
         cursor: Option<&str>,
     ) -> Result<GetFixedTermOrderResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let start_time_str = start_time.map(|v| v.to_string());
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
@@ -329,8 +341,8 @@ impl BybitClient {
         if let Some(v) = product_id {
             params.push(("productId", v));
         }
-        if let Some(v) = category {
-            params.push(("category", v));
+        if let Some(ref v) = cat_str {
+            params.push(("category", v.as_str()));
         }
         if let Some(v) = order_id {
             params.push(("orderId", v));
@@ -354,15 +366,16 @@ impl BybitClient {
     pub async fn get_fixed_term_position(
         &self,
         product_id: Option<&str>,
-        category: Option<&str>,
+        category: Option<Category>,
         coin: Option<&str>,
     ) -> Result<GetFixedTermPositionResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let mut params: Vec<(&str, &str)> = vec![];
         if let Some(v) = product_id {
             params.push(("productId", v));
         }
-        if let Some(v) = category {
-            params.push(("category", v));
+        if let Some(ref v) = cat_str {
+            params.push(("category", v.as_str()));
         }
         if let Some(v) = coin {
             params.push(("coin", v));
@@ -654,10 +667,11 @@ impl BybitClient {
 
     pub async fn get_smart_leverage_redeem_est_amount_list(
         &self,
-        category: &str,
+        category: Category,
         position_ids: &str,
     ) -> Result<GetSmartLeverageRedeemEstAmountListResponse> {
-        let params = vec![("category", category), ("positionIds", position_ids)];
+        let cat_str = category.to_string();
+        let params = vec![("category", cat_str.as_str()), ("positionIds", position_ids)];
 
         self.get("/v5/earn/advance/get-redeem-est-amount-list", &params)
             .await
@@ -783,8 +797,9 @@ impl BybitClient {
         self.get_public("/v5/earn/token/product", &params).await
     }
 
-    pub async fn list_earn_coupons(&self, category: &str) -> Result<ListEarnCouponsResponse> {
-        let params = vec![("category", category)];
+    pub async fn list_earn_coupons(&self, category: Category) -> Result<ListEarnCouponsResponse> {
+        let cat_str = category.to_string();
+        let params = vec![("category", cat_str.as_str())];
         self.get("/v5/earn/coupons", &params).await
     }
 
@@ -1095,7 +1110,7 @@ impl BybitClient {
     pub async fn pwm_list_order(
         &self,
         plan_id: Option<&str>,
-        category: Option<&str>,
+        category: Option<Category>,
         order_type: Option<&str>,
         status: Option<&str>,
         start_time: Option<i64>,
@@ -1104,6 +1119,7 @@ impl BybitClient {
         cursor: Option<&str>,
         order_link_id: Option<&str>,
     ) -> Result<PwmListOrderResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let start_time_str = start_time.map(|v| v.to_string());
         let end_time_str = end_time.map(|v| v.to_string());
         let limit_str = limit.map(|v| v.to_string());
@@ -1112,8 +1128,8 @@ impl BybitClient {
         if let Some(v) = plan_id {
             params.push(("planId", v));
         }
-        if let Some(v) = category {
-            params.push(("category", v));
+        if let Some(ref v) = cat_str {
+            params.push(("category", v.as_str()));
         }
         if let Some(v) = order_type {
             params.push(("type", v));

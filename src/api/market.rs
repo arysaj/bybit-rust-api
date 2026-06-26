@@ -297,15 +297,16 @@ impl BybitClient {
 
     pub async fn get_delivery_price(
         &self,
-        category: &str,
+        category: Category,
         symbol: Option<&str>,
         base_coin: Option<&str>,
         settle_coin: Option<&str>,
         limit: Option<u32>,
         cursor: Option<&str>,
     ) -> Result<GetDeliveryPriceResponse> {
+        let cat_str = category.to_string();
         let limit_str = limit.map(|v| v.to_string());
-        let mut params: Vec<(&str, &str)> = vec![("category", category)];
+        let mut params: Vec<(&str, &str)> = vec![("category", cat_str.as_str())];
         if let Some(s) = symbol {
             params.push(("symbol", s));
         }
@@ -326,17 +327,18 @@ impl BybitClient {
 
     pub async fn get_historical_volatility(
         &self,
-        category: &str,
+        category: Category,
         base_coin: Option<&str>,
         quote_coin: Option<&str>,
         period: Option<u32>,
         start_time: Option<u64>,
         end_time: Option<u64>,
     ) -> Result<GetHistoricalVolatilityResponse> {
+        let cat_str = category.to_string();
         let period_str = period.map(|v| v.to_string());
         let start_time_str = start_time.map(|v| v.to_string());
         let end_time_str = end_time.map(|v| v.to_string());
-        let mut params: Vec<(&str, &str)> = vec![("category", category)];
+        let mut params: Vec<(&str, &str)> = vec![("category", cat_str.as_str())];
         if let Some(s) = base_coin {
             params.push(("baseCoin", s));
         }
@@ -375,7 +377,7 @@ impl BybitClient {
 
     pub async fn get_long_short_ratio(
         &self,
-        category: &str,
+        category: Category,
         symbol: &str,
         period: &str,
         start_time: Option<&str>,
@@ -383,9 +385,10 @@ impl BybitClient {
         limit: Option<u32>,
         cursor: Option<&str>,
     ) -> Result<GetLongShortRatioResponse> {
+        let cat_str = category.to_string();
         let limit_str = limit.map(|v| v.to_string());
         let mut params: Vec<(&str, &str)> = vec![
-            ("category", category),
+            ("category", cat_str.as_str()),
             ("symbol", symbol),
             ("period", period),
         ];
@@ -406,11 +409,13 @@ impl BybitClient {
 
     pub async fn get_new_delivery_price(
         &self,
-        category: &str,
+        category: Category,
         base_coin: &str,
         settle_coin: Option<&str>,
     ) -> Result<GetNewDeliveryPriceResponse> {
-        let mut params: Vec<(&str, &str)> = vec![("category", category), ("baseCoin", base_coin)];
+        let cat_str = category.to_string();
+        let mut params: Vec<(&str, &str)> =
+            vec![("category", cat_str.as_str()), ("baseCoin", base_coin)];
         if let Some(s) = settle_coin {
             params.push(("settleCoin", s));
         }
@@ -420,26 +425,28 @@ impl BybitClient {
 
     pub async fn get_order_price_limit(
         &self,
-        category: Option<&str>,
+        category: Option<Category>,
         symbol: &str,
     ) -> Result<GetOrderPriceLimitResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let mut params: Vec<(&str, &str)> = vec![("symbol", symbol)];
-        if let Some(s) = category {
-            params.push(("category", s));
+        if let Some(ref s) = cat_str {
+            params.push(("category", s.as_str()));
         }
         self.get_public("/v5/market/price-limit", &params).await
     }
 
     pub async fn get_rpi_orderbook(
         &self,
-        category: Option<&str>,
+        category: Option<Category>,
         symbol: &str,
         limit: u32,
     ) -> Result<GetRpiOrderbookResponse> {
+        let cat_str = category.map(|c| c.to_string());
         let limit_str = limit.to_string();
         let mut params: Vec<(&str, &str)> = vec![("symbol", symbol), ("limit", limit_str.as_str())];
-        if let Some(s) = category {
-            params.push(("category", s));
+        if let Some(ref s) = cat_str {
+            params.push(("category", s.as_str()));
         }
         self.get_public("/v5/market/rpi_orderbook", &params).await
     }
