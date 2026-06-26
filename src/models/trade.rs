@@ -843,6 +843,9 @@ pub struct OrderDetail {
     pub oco_trigger_by: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub base_price: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cum_fee_detail: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -952,6 +955,9 @@ pub struct OrderHistoryDetail {
     pub slippage_tolerance_type: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub slippage_tolerance: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub cum_fee_detail: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]

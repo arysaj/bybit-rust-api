@@ -147,10 +147,19 @@ pub struct PlaceAdvanceEarnOrderParams {
     pub smart_leverage_stake_extra: Option<SmartLeverageStakeExtra>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub smart_leverage_redeem_extra: Option<SmartLeverageRedeemExtra>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub double_win_stake_extra: Option<serde_json::Value>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub double_win_redeem_extra: Option<serde_json::Value>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub discount_buy_extra: Option<serde_json::Value>,
 }
@@ -1409,6 +1418,9 @@ pub struct PlaceEarnOrderParams {
     pub redeem_position_id: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub to_account_type: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub interest_card: Option<serde_json::Value>,
 }
@@ -2824,8 +2836,14 @@ pub struct PwmPlanDetailResult {
     pub accumulate_yield_usd: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub weighted_avg_apr: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub current_assets: Option<serde_json::Value>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub positions: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -2847,6 +2865,9 @@ pub struct PwmNewPlanDetailResult {
     pub source: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub total_configured_amount_usd: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub products: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]

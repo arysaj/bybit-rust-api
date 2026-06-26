@@ -64,6 +64,9 @@ impl BybitClient {
     ///
     /// # Arguments
     /// * `margin_mode` - Margin mode (REGULAR_MARGIN, PORTFOLIO_MARGIN)
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_margin_mode(&self, margin_mode: MarginMode) -> Result<serde_json::Value> {
         let params = SetMarginModeParams {
             set_margin_mode: margin_mode.to_string(),
@@ -208,6 +211,9 @@ impl BybitClient {
         self.post("/v5/account/mmp-reset", &params).await
     }
 
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_collateral_coin(
         &self,
         params: SetCollateralCoinParams,

@@ -84,41 +84,44 @@ impl BybitClient {
     }
 
     /// Get Quotes.
-    pub async fn get_quotes(
-        &self,
-        rfq_id: Option<&str>,
-        quote_id: Option<&str>,
-        quote_link_id: Option<&str>,
-        trader_type: Option<&str>,
-        status: Option<&str>,
-        limit: Option<u32>,
-        cursor: Option<&str>,
-    ) -> Result<GetQuotesResponse> {
-        let limit_str = limit.map(|v| v.to_string());
-
+    ///
+    /// # Example
+    /// ```rust,no_run
+    /// # use bybit_api::{BybitClient, GetQuotesParams};
+    /// # async fn example() -> bybit_api::Result<()> {
+    /// let client = BybitClient::testnet("k", "s")?;
+    /// let quotes = client.get_quotes(GetQuotesParams {
+    ///     rfq_id: Some("xxx".into()),
+    ///     limit: Some(20),
+    ///     ..Default::default()
+    /// }).await?;
+    /// # Ok(())
+    /// # }
+    /// ```
+    pub async fn get_quotes(&self, p: GetQuotesParams) -> Result<GetQuotesResponse> {
+        let limit_str = p.limit.map(|v| v.to_string());
         let mut params: Vec<(&str, &str)> = vec![];
-        if let Some(s) = rfq_id {
-            params.push(("rfqId", s));
+        if let Some(ref s) = p.rfq_id {
+            params.push(("rfqId", s.as_str()));
         }
-        if let Some(s) = quote_id {
-            params.push(("quoteId", s));
+        if let Some(ref s) = p.quote_id {
+            params.push(("quoteId", s.as_str()));
         }
-        if let Some(s) = quote_link_id {
-            params.push(("quoteLinkId", s));
+        if let Some(ref s) = p.quote_link_id {
+            params.push(("quoteLinkId", s.as_str()));
         }
-        if let Some(s) = trader_type {
-            params.push(("traderType", s));
+        if let Some(ref s) = p.trader_type {
+            params.push(("traderType", s.as_str()));
         }
-        if let Some(s) = status {
-            params.push(("status", s));
+        if let Some(ref s) = p.status {
+            params.push(("status", s.as_str()));
         }
         if let Some(ref s) = limit_str {
             params.push(("limit", s.as_str()));
         }
-        if let Some(s) = cursor {
-            params.push(("cursor", s));
+        if let Some(ref s) = p.cursor {
+            params.push(("cursor", s.as_str()));
         }
-
         self.get("/v5/rfq/quote-list", &params).await
     }
 
@@ -211,43 +214,34 @@ impl BybitClient {
     /// Get Trade History.
     pub async fn get_trade_history(
         &self,
-        rfq_id: Option<&str>,
-        rfq_link_id: Option<&str>,
-        quote_id: Option<&str>,
-        quote_link_id: Option<&str>,
-        trader_type: Option<&str>,
-        status: Option<&str>,
-        limit: Option<u32>,
-        cursor: Option<&str>,
+        p: GetTradeHistoryParams,
     ) -> Result<GetTradeHistoryResponse> {
-        let limit_str = limit.map(|v| v.to_string());
-
+        let limit_str = p.limit.map(|v| v.to_string());
         let mut params: Vec<(&str, &str)> = vec![];
-        if let Some(s) = rfq_id {
-            params.push(("rfqId", s));
+        if let Some(ref s) = p.rfq_id {
+            params.push(("rfqId", s.as_str()));
         }
-        if let Some(s) = rfq_link_id {
-            params.push(("rfqLinkId", s));
+        if let Some(ref s) = p.rfq_link_id {
+            params.push(("rfqLinkId", s.as_str()));
         }
-        if let Some(s) = quote_id {
-            params.push(("quoteId", s));
+        if let Some(ref s) = p.quote_id {
+            params.push(("quoteId", s.as_str()));
         }
-        if let Some(s) = quote_link_id {
-            params.push(("quoteLinkId", s));
+        if let Some(ref s) = p.quote_link_id {
+            params.push(("quoteLinkId", s.as_str()));
         }
-        if let Some(s) = trader_type {
-            params.push(("traderType", s));
+        if let Some(ref s) = p.trader_type {
+            params.push(("traderType", s.as_str()));
         }
-        if let Some(s) = status {
-            params.push(("status", s));
+        if let Some(ref s) = p.status {
+            params.push(("status", s.as_str()));
         }
         if let Some(ref s) = limit_str {
             params.push(("limit", s.as_str()));
         }
-        if let Some(s) = cursor {
-            params.push(("cursor", s));
+        if let Some(ref s) = p.cursor {
+            params.push(("cursor", s.as_str()));
         }
-
         self.get("/v5/rfq/trade-list", &params).await
     }
 }

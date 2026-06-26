@@ -78,6 +78,9 @@ impl BybitClient {
     }
 
     /// Distribute voucher.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn distribute_award(
         &self,
         params: DistributeAwardParams,

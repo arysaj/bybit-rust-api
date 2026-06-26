@@ -436,8 +436,10 @@ pub struct FeeGroup {
     pub symbols_numbers: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub symbols: Option<Vec<String>>,
+    /// List of taker/maker fee rates by level. Wired to the already-defined
+    /// `FeeRateLevel` inner type.
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub fee_rates: Option<serde_json::Value>,
+    pub fee_rates: Option<Vec<FeeRateLevel>>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub update_time: Option<String>,
 }
@@ -705,6 +707,9 @@ pub struct InstrumentLinearInverse {
     pub upper_funding_rate: String,
     pub lower_funding_rate: String,
     pub is_pre_listing: bool,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pre_listing_info: Option<serde_json::Value>,
     pub risk_parameters: RiskParameters,

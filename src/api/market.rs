@@ -375,6 +375,7 @@ impl BybitClient {
         self.get_public("/v5/market/insurance", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_long_short_ratio(
         &self,
         category: Category,

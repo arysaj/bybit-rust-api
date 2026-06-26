@@ -591,3 +591,34 @@ pub struct TradeHistoryLeg {
     pub result_message: Option<String>,
     pub reject_party: Option<String>,
 }
+
+/// Query parameters for [`crate::BybitClient::get_quotes`].
+///
+/// All fields are optional; use `..Default::default()` to omit them.
+/// Constructed by struct-literal syntax so positional arg-swap bugs
+/// (e.g., passing `quote_id` where `rfq_id` was expected) are impossible.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct GetQuotesParams {
+    pub rfq_id: Option<String>,
+    pub quote_id: Option<String>,
+    pub quote_link_id: Option<String>,
+    pub trader_type: Option<String>,
+    pub status: Option<String>,
+    pub limit: Option<u32>,
+    pub cursor: Option<String>,
+}
+
+/// Query parameters for [`crate::BybitClient::get_trade_history`].
+///
+/// All fields are optional; use `..Default::default()` to omit them.
+#[derive(Debug, Clone, Default, Serialize, Deserialize)]
+pub struct GetTradeHistoryParams {
+    pub rfq_id: Option<String>,
+    pub rfq_link_id: Option<String>,
+    pub quote_id: Option<String>,
+    pub quote_link_id: Option<String>,
+    pub trader_type: Option<String>,
+    pub status: Option<String>,
+    pub limit: Option<u32>,
+    pub cursor: Option<String>,
+}

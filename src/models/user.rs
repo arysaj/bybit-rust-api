@@ -1,5 +1,7 @@
 use serde::{Deserialize, Serialize};
 
+use crate::models::common::RedactedString;
+
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AffiliateSubItem {
@@ -183,8 +185,14 @@ pub struct AffiliateCustomOpenInfoResult {
     pub tradfi_trade_vol_30_day: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub tradfi_trade_vol_365_day: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub commissions_30_day: Option<serde_json::Value>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub commissions_365_day: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]
@@ -216,7 +224,7 @@ pub type CreateSubApiKeyResponse = serde_json::Value;
 pub struct CreateSubMemberParams {
     pub username: String,
     #[serde(skip_serializing_if = "Option::is_none")]
-    pub password: Option<String>,
+    pub password: Option<RedactedString>,
     pub member_type: i32,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub switch: Option<i32>,
@@ -326,8 +334,10 @@ pub struct UpdateApiKeyResponse {
     pub api_key: String,
     #[serde(default)]
     pub read_only: i32,
+    /// API secret. Wrapped in [`RedactedString`] so it never appears in
+    /// `Debug` / log output.
     #[serde(default)]
-    pub secret: String,
+    pub secret: RedactedString,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub permissions: Option<ApiKeyPermissions>,
     #[serde(default)]
@@ -360,8 +370,10 @@ pub struct UpdateSubApiKeyResponse {
     pub api_key: String,
     #[serde(default)]
     pub read_only: i32,
+    /// API secret. Wrapped in [`RedactedString`] so it never appears in
+    /// `Debug` / log output.
     #[serde(default)]
-    pub secret: String,
+    pub secret: RedactedString,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub permissions: Option<ApiKeyPermissions>,
     #[serde(default)]

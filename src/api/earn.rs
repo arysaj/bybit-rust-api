@@ -16,7 +16,10 @@ impl BybitClient {
     // serde_json::Value so the SDK compiles; the caller constructs the body
     // manually. Re-run gen-sdk-rust after fixing plan output to recover the
     // typed signature.
-    pub async fn add_margin_v2(&self, params: serde_json::Value) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn add_liquidity_mining_margin(&self, params: serde_json::Value) -> Result<serde_json::Value> {
         self.post("/v5/earn/liquidity-mining/add-margin", &params)
             .await
     }
@@ -29,6 +32,7 @@ impl BybitClient {
             .await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_advance_earn_order(
         &self,
         category: Category,
@@ -209,6 +213,7 @@ impl BybitClient {
         self.get("/v5/earn/hourly-yield", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_earn_order_history(
         &self,
         category: Category,
@@ -318,6 +323,7 @@ impl BybitClient {
         self.get("/v5/earn/yield", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_fixed_term_order(
         &self,
         order_type: Option<&str>,
@@ -464,6 +470,7 @@ impl BybitClient {
             .await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_liquidity_mining_orders(
         &self,
         order_id: Option<&str>,
@@ -604,6 +611,7 @@ impl BybitClient {
         self.get_public("/v5/earn/rwa/nav-chart", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_rwa_order_list(
         &self,
         order_id: Option<&str>,
@@ -746,6 +754,7 @@ impl BybitClient {
         self.get("/v5/earn/token/hourly-yield", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_token_order_list(
         &self,
         coin: &str,
@@ -803,6 +812,9 @@ impl BybitClient {
         self.get("/v5/earn/coupons", &params).await
     }
 
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn modify_earn_position(
         &self,
         params: ModifyEarnPositionParams,
@@ -1008,6 +1020,7 @@ impl BybitClient {
             .await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn pwm_inst_list_orders(
         &self,
         fund_id: Option<&str>,
@@ -1107,6 +1120,7 @@ impl BybitClient {
         self.get("/v5/earn/pwm/investment-plan/all", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn pwm_list_order(
         &self,
         plan_id: Option<&str>,
@@ -1158,8 +1172,7 @@ impl BybitClient {
     }
 
     pub async fn pwm_list_product_cards(&self) -> Result<PwmListProductCardsResponse> {
-        self.get_public("/v5/earn/pwm/customize-plan/product", &[])
-            .await
+        self.get("/v5/earn/pwm/customize-plan/product", &[]).await
     }
 
     pub async fn pwm_query_fund_transfer_result(
@@ -1198,6 +1211,9 @@ impl BybitClient {
         self.post("/v5/earn/fixed-term/redeem", &params).await
     }
 
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn reinvest_liquidity(
         &self,
         params: ReinvestLiquidityParams,
@@ -1206,6 +1222,9 @@ impl BybitClient {
             .await
     }
 
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn remove_liquidity(
         &self,
         params: RemoveLiquidityParams,
@@ -1214,6 +1233,9 @@ impl BybitClient {
             .await
     }
 
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_fixed_term_auto_invest(
         &self,
         params: SetFixedTermAutoInvestParams,

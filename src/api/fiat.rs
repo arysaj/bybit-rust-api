@@ -19,7 +19,10 @@ impl BybitClient {
     /// Get Account Information.
     // FIXME(gen-sdk-rust): plan agent referenced GetAccountInfoResponse without
     // emitting the type to models/fiat.rs. Falling back to serde_json::Value.
-    pub async fn get_account_info_v2(&self) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn get_p2p_personal_info(&self) -> Result<serde_json::Value> {
         self.post("/v5/p2p/user/personal/info", &serde_json::json!({}))
             .await
     }
@@ -33,6 +36,9 @@ impl BybitClient {
     // FIXME(gen-sdk-rust): plan agent referenced GetAllOrdersParams +
     // GetAllOrdersResponse without emitting the types to models/fiat.rs.
     // Falling back to serde_json::Value for both.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn get_all_orders(&self, params: serde_json::Value) -> Result<serde_json::Value> {
         self.post("/v5/p2p/order/simplifyList", &params).await
     }
@@ -232,16 +238,25 @@ impl BybitClient {
     }
 
     /// Release Assets.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn release_assets(&self, params: ReleaseAssetsParams) -> Result<serde_json::Value> {
         self.post("/v5/p2p/order/finish", &params).await
     }
 
     /// Remove Ad.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn remove_ad(&self, params: RemoveAdParams) -> Result<serde_json::Value> {
         self.post("/v5/p2p/item/cancel", &params).await
     }
 
     /// Send Chat Message.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn send_chat_message(
         &self,
         params: SendChatMessageParams,

@@ -44,6 +44,7 @@ impl BybitClient {
     }
 
     /// Get affiliate user list.
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_affiliate_user_list(
         &self,
         cursor: Option<&str>,
@@ -133,6 +134,9 @@ impl BybitClient {
     }
 
     /// Get Member Account Type.
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn get_member_account_type(
         &self,
         member_ids: Option<&str>,

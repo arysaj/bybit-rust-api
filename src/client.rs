@@ -10,6 +10,85 @@ use crate::config::ClientConfig;
 use crate::constants::*;
 use crate::error::{BybitError, Result};
 
+/// JSON keys whose values must be masked before being written to debug logs.
+///
+/// Match is case-insensitive on the unquoted key text. We deliberately do not
+/// try to be exhaustive — anything that looks credential-shaped goes here.
+const SENSITIVE_JSON_KEYS: &[&str] = &[
+    "secret",
+    "password",
+    "apiSecret",
+    "api_secret",
+    "apiKey",
+    "api_key",
+    "privateKey",
+    "private_key",
+    "token",
+    "sign",
+];
+
+/// Mask credential values in a JSON body string before logging.
+///
+/// This is a defensive last line of defense — typed credential fields should
+/// already use [`crate::models::RedactedString`]. The mask is purely textual
+/// (substring of a JSON dump), so it works on both serialized request bodies
+/// and raw HTTP response text.
+fn mask_sensitive(json_body: &str) -> String {
+    let mut out = json_body.to_owned();
+    for key in SENSITIVE_JSON_KEYS {
+        // Match `"<key>":"<anything-not-double-quote>"` (the most common JSON shape).
+        // Use a simple linear scan: find `"<key>":"`, then replace up to the next `"`.
+        let needle = format!("\"{}\":\"", key);
+        let needle_lower = needle.to_lowercase();
+        let mut cursor = 0usize;
+        loop {
+            // Case-insensitive find: scan windows of out from cursor.
+            let lower_remaining = out[cursor..].to_lowercase();
+            let Some(rel) = lower_remaining.find(&needle_lower) else {
+                break;
+            };
+            let start = cursor + rel + needle.len();
+            // Find the closing quote (no escape support — Bybit secrets do not contain `"`).
+            let Some(end_rel) = out[start..].find('"') else {
+                break;
+            };
+            let end = start + end_rel;
+            out.replace_range(start..end, "***REDACTED***");
+            cursor = start + "***REDACTED***".len();
+        }
+    }
+    out
+}
+
+#[cfg(test)]
+mod mask_tests {
+    use super::mask_sensitive;
+
+    #[test]
+    fn masks_secret_field() {
+        let input = r#"{"apiKey":"k1","secret":"superSecretValue","other":"plain"}"#;
+        let out = mask_sensitive(input);
+        assert!(out.contains("***REDACTED***"));
+        assert!(!out.contains("superSecretValue"));
+        assert!(!out.contains("k1"));
+        assert!(out.contains("plain"));
+    }
+
+    #[test]
+    fn masks_password_case_insensitively() {
+        let input = r#"{"Password":"p@ss","apisecret":"x"}"#;
+        let out = mask_sensitive(input);
+        assert!(!out.contains("p@ss"));
+        assert!(!out.contains("\"x\""));
+    }
+
+    #[test]
+    fn leaves_unrelated_keys_intact() {
+        let input = r#"{"category":"linear","symbol":"BTCUSDT"}"#;
+        assert_eq!(mask_sensitive(input), input);
+    }
+}
+
 /// API response wrapper from Bybit.
 #[derive(Debug, serde::Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -155,7 +234,7 @@ impl BybitClient {
         let headers = self.build_auth_headers(timestamp, &signature);
 
         if self.config.debug {
-            debug!("POST {} body: {}", url, body_str);
+            debug!("POST {} body: {}", url, mask_sensitive(&body_str));
         }
 
         let response = tokio::time::timeout(
@@ -208,7 +287,11 @@ impl BybitClient {
         let text = response.text().await.map_err(BybitError::Http)?;
 
         if self.config.debug {
-            debug!("Response status: {}, body: {}", status, text);
+            debug!(
+                "Response status: {}, body: {}",
+                status,
+                mask_sensitive(&text)
+            );
         }
 
         if !status.is_success() {

@@ -39,6 +39,9 @@ impl BybitClient {
     /// * `symbol` - Symbol name
     /// * `buy_leverage` - Buy leverage
     /// * `sell_leverage` - Sell leverage
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_leverage(
         &self,
         category: Category,
@@ -60,6 +63,9 @@ impl BybitClient {
     ///
     /// # Arguments
     /// * `params` - Trading stop parameters
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_trading_stop(&self, params: TradingStopParams) -> Result<serde_json::Value> {
         self.post("/v5/position/trading-stop", &params).await
     }
@@ -69,6 +75,9 @@ impl BybitClient {
     /// # Arguments
     /// * `category` - Product category
     /// * `mode` - Position mode (0=merged, 3=both sides)
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn switch_position_mode(
         &self,
         category: Category,
@@ -90,6 +99,9 @@ impl BybitClient {
     /// * `category` - Product category
     /// * `symbol` - Symbol name
     /// * `risk_id` - Risk limit ID
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_risk_limit(
         &self,
         category: Category,
@@ -112,6 +124,9 @@ impl BybitClient {
     /// * `category` - Product category
     /// * `symbol` - Symbol name
     /// * `margin` - Margin amount (positive to add, negative to reduce)
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn add_margin(
         &self,
         category: Category,
@@ -219,6 +234,7 @@ impl BybitClient {
         self.get("/v5/position/get-closed-positions", &params).await
     }
 
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
     pub async fn get_move_position_history(
         &self,
         category: Option<Category>,

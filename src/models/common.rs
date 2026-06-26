@@ -2,6 +2,52 @@
 
 use serde::{Deserialize, Serialize};
 
+/// A string newtype that hides its contents from `Debug` formatting.
+///
+/// Use for API secrets, passwords, and other credentials that must never
+/// appear in logs. Serializes/deserializes transparently as a plain string
+/// so the wire format is unchanged.
+///
+/// Call [`Self::expose_secret`] to access the underlying value when you
+/// genuinely need it (e.g. to authenticate a request).
+#[derive(Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct RedactedString(String);
+
+impl RedactedString {
+    /// Wrap a string. Prefer [`From<String>`] / [`From<&str>`] in code.
+    pub fn new(s: impl Into<String>) -> Self {
+        Self(s.into())
+    }
+
+    /// Access the underlying secret. Use sparingly; never log the return
+    /// value of this method.
+    pub fn expose_secret(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Debug for RedactedString {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // Note: do NOT include length or any prefix/suffix of the secret;
+        // doing so can leak entropy in low-entropy secrets.
+        f.write_str("RedactedString(***)")
+    }
+}
+
+impl From<String> for RedactedString {
+    fn from(s: String) -> Self {
+        Self(s)
+    }
+}
+
+impl From<&str> for RedactedString {
+    fn from(s: &str) -> Self {
+        Self(s.to_owned())
+    }
+}
+
+
 /// Product category.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]

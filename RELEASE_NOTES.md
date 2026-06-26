@@ -18,10 +18,12 @@
 ### Notes
 - All shared model types now derive both Serialize and Deserialize so leg/item
   structs can be reused across request and response contexts.
-- 33 service-method signatures fell back to serde_json::Value (untyped body
-  / return) where the OpenAPI spec referenced response or request types that
-  the generation workflow could not auto-resolve. Marked with FIXME comments
-  in source — typed signatures can be added in a follow-up.
+- 30 service-method signatures still fall back to `serde_json::Value` (untyped
+  body / return) where the OpenAPI spec referenced response or request types
+  that the generation workflow could not auto-resolve. **Every such site is now
+  annotated with a `FIXME(typed-signature)` comment** so they are discoverable
+  by `grep` and `docs.rs`. Typed signatures will be added in a follow-up PR
+  alongside a refresh of the gen-sdk-rust template.
 
 ## 2026-06-24
 

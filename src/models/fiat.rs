@@ -712,6 +712,9 @@ pub struct AgreementSceneInfo {
     pub device_id: Option<String>,
     #[serde(rename = "device_ip", skip_serializing_if = "Option::is_none")]
     pub device_ip: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub location: Option<serde_json::Value>,
 }
@@ -754,6 +757,9 @@ pub struct AgreementSignParams {
         skip_serializing_if = "Option::is_none"
     )]
     pub sign_expire_minutes: Option<i32>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(rename = "extra_params", skip_serializing_if = "Option::is_none")]
     pub extra_params: Option<serde_json::Value>,
 }
@@ -1199,6 +1205,9 @@ pub struct OrderItem {
     pub seller_real_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub buyer_real_name: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub extension: Option<serde_json::Value>,
 }
@@ -1454,6 +1463,9 @@ pub struct PaymentMethod {
     pub payment_template_version: Option<i32>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub has_payment_template_changed: Option<bool>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub payment_config_vo: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]

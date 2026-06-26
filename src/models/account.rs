@@ -484,6 +484,9 @@ pub struct GetAccountInstrumentsItem {
     pub display_name: Option<String>,
     #[serde(skip_serializing_if = "Option::is_none")]
     pub innovation: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
     #[serde(skip_serializing_if = "Option::is_none")]
     pub pre_listing_info: Option<serde_json::Value>,
     #[serde(skip_serializing_if = "Option::is_none")]

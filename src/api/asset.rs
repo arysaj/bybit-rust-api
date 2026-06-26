@@ -144,6 +144,9 @@ impl BybitClient {
     ///
     /// # Arguments
     /// * `withdraw_id` - Withdraw ID to cancel
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn cancel_withdraw(&self, withdraw_id: &str) -> Result<serde_json::Value> {
         let params = CancelWithdrawParams {
             id: withdraw_id.to_string(),

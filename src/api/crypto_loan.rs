@@ -87,25 +87,34 @@ impl BybitClient {
     }
 
     /// Get Repayment History
-    pub async fn get_crypto_loan_fixed_repayment_history(&self) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn get_fixed_repayment_history(&self) -> Result<serde_json::Value> {
         self.get("/v5/crypto-loan-fixed/repayment-history", &[])
             .await
     }
 
     /// Get Supply Contract Info
-    pub async fn get_crypto_loan_fixed_supply_contract_info(&self) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn get_fixed_supply_contract_info(&self) -> Result<serde_json::Value> {
         self.get("/v5/crypto-loan-fixed/supply-contract-info", &[])
             .await
     }
 
     /// Get Supply Order Info
-    pub async fn get_crypto_loan_fixed_supply_order_info(&self) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn get_fixed_supply_order_info(&self) -> Result<serde_json::Value> {
         self.get("/v5/crypto-loan-fixed/supply-order-info", &[])
             .await
     }
 
     /// Get Supply Market Quotes
-    pub async fn get_crypto_loan_fixed_supply_order_quote(
+    pub async fn get_fixed_supply_order_quote(
         &self,
     ) -> Result<GetCryptoLoanFixedSupplyOrderQuoteResponse> {
         self.get_public("/v5/crypto-loan-fixed/supply-order-quote", &[])
@@ -113,7 +122,7 @@ impl BybitClient {
     }
 
     /// Get Flexible Borrow History
-    pub async fn get_crypto_loan_flexible_borrow_history(
+    pub async fn get_flexible_borrow_history(
         &self,
     ) -> Result<GetCryptoLoanFlexibleBorrowHistoryResponse> {
         self.get("/v5/crypto-loan-flexible/borrow-history", &[])
@@ -121,12 +130,15 @@ impl BybitClient {
     }
 
     /// Get Ongoing Flexible Borrow Info
-    pub async fn get_crypto_loan_flexible_ongoing_coin(&self) -> Result<serde_json::Value> {
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn get_flexible_ongoing_coin(&self) -> Result<serde_json::Value> {
         self.get("/v5/crypto-loan-flexible/ongoing-coin", &[]).await
     }
 
     /// Get Flexible Repayment History
-    pub async fn get_crypto_loan_flexible_repayment_history(
+    pub async fn get_flexible_repayment_history(
         &self,
     ) -> Result<GetCryptoLoanFlexibleRepaymentHistoryResponse> {
         self.get("/v5/crypto-loan-flexible/repayment-history", &[])
@@ -134,6 +146,9 @@ impl BybitClient {
     }
 
     /// Get Borrow Contract Info
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn get_fixed_borrow_contract_info(
         &self,
         order_id: Option<&str>,
@@ -169,6 +184,9 @@ impl BybitClient {
     }
 
     /// Get Borrow Order Info
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn get_fixed_borrow_order_info(
         &self,
         order_id: Option<&str>,
@@ -235,6 +253,9 @@ impl BybitClient {
     }
 
     /// Get Renewal Information
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn get_fixed_renew_info(
         &self,
         order_id: Option<&str>,
@@ -293,7 +314,7 @@ impl BybitClient {
     }
 
     /// Repay with Collateral (Fixed)
-    pub async fn post_crypto_loan_fixed_repay_collateral(
+    pub async fn repay_fixed_collateral(
         &self,
         params: PostCryptoLoanFixedRepayCollateralParams,
     ) -> Result<PostCryptoLoanFixedRepayCollateralResponse> {
@@ -302,7 +323,10 @@ impl BybitClient {
     }
 
     /// Create Supply Order
-    pub async fn post_crypto_loan_fixed_supply(
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn create_fixed_supply(
         &self,
         params: PostCryptoLoanFixedSupplyParams,
     ) -> Result<serde_json::Value> {
@@ -310,7 +334,7 @@ impl BybitClient {
     }
 
     /// Cancel Supply Order
-    pub async fn post_crypto_loan_fixed_supply_order_cancel(
+    pub async fn cancel_fixed_supply_order(
         &self,
         params: PostCryptoLoanFixedSupplyOrderCancelParams,
     ) -> Result<PostCryptoLoanFixedSupplyOrderCancelResponse> {
@@ -319,7 +343,7 @@ impl BybitClient {
     }
 
     /// Create Flexible Borrow Order
-    pub async fn post_crypto_loan_flexible_borrow(
+    pub async fn create_flexible_borrow(
         &self,
         params: PostCryptoLoanFlexibleBorrowParams,
     ) -> Result<PostCryptoLoanFlexibleBorrowResponse> {
@@ -327,7 +351,10 @@ impl BybitClient {
     }
 
     /// Repay Flexible Loan
-    pub async fn post_crypto_loan_flexible_repay(
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
+    pub async fn repay_flexible_loan(
         &self,
         params: PostCryptoLoanFlexibleRepayParams,
     ) -> Result<serde_json::Value> {
@@ -335,7 +362,7 @@ impl BybitClient {
     }
 
     /// Repay with Collateral (Flexible)
-    pub async fn post_crypto_loan_flexible_repay_collateral(
+    pub async fn repay_flexible_collateral(
         &self,
         params: PostCryptoLoanFlexibleRepayCollateralParams,
     ) -> Result<PostCryptoLoanFlexibleRepayCollateralResponse> {
@@ -344,6 +371,9 @@ impl BybitClient {
     }
 
     /// Renew Loan
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn renew_fixed_loan(
         &self,
         params: RenewFixedLoanParams,
