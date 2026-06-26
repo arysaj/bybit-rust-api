@@ -3,6 +3,7 @@
 use crate::client::BybitClient;
 use crate::error::Result;
 use crate::models::fiat::*;
+use crate::models::AccountType;
 
 impl BybitClient {
     /// Request a Quote.
@@ -47,13 +48,14 @@ impl BybitClient {
     /// Get Coin Balance.
     pub async fn get_coin_balance(
         &self,
-        account_type: &str,
+        account_type: AccountType,
         member_id: Option<&str>,
         coin: Option<&str>,
         with_bonus: Option<i64>,
     ) -> Result<GetCoinBalanceResponse> {
+        let account_type_str = account_type.to_string();
         let with_bonus_str = with_bonus.map(|v| v.to_string());
-        let mut params = vec![("accountType", account_type)];
+        let mut params = vec![("accountType", account_type_str.as_str())];
         if let Some(m) = member_id {
             params.push(("memberId", m));
         }

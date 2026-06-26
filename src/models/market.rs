@@ -639,15 +639,6 @@ pub type GetIndexPriceComponentsResponse = IndexComponentsResult;
 
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
-pub struct BaseResponse {
-    pub ret_code: i32,
-    pub ret_msg: String,
-    pub ret_ext_info: serde_json::Value,
-    pub time: i64,
-}
-
-#[derive(Debug, Clone, Serialize, Deserialize)]
-#[serde(rename_all = "camelCase")]
 pub struct IndexKlineEntry {
     pub item: Vec<String>,
 }

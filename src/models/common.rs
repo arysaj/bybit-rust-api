@@ -36,6 +36,15 @@ pub enum Side {
     Sell,
 }
 
+impl std::fmt::Display for Side {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Buy => write!(f, "Buy"),
+            Self::Sell => write!(f, "Sell"),
+        }
+    }
+}
+
 /// Order type.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum OrderType {

@@ -208,13 +208,14 @@ impl BybitClient {
         &self,
         category: Category,
         symbol: &str,
-        side: &str,
+        side: Side,
     ) -> Result<GetSpotBorrowQuotaResponse> {
         let cat_str = category.to_string();
+        let side_str = side.to_string();
         let params = vec![
             ("category", cat_str.as_str()),
             ("symbol", symbol),
-            ("side", side),
+            ("side", side_str.as_str()),
         ];
         self.get("/v5/order/spot-borrow-check", &params).await
     }
