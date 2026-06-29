@@ -149,15 +149,18 @@ impl BybitClient {
     }
 
     /// List Sub-account API Keys.
+    ///
+    /// See: https://bybit-exchange.github.io/docs/v5/user/list-sub-apikeys
     pub async fn list_sub_api_keys_v5(
         &self,
-        subuid: i64,
+        sub_member_id: i64,
         limit: Option<i64>,
         cursor: Option<&str>,
     ) -> Result<ListSubApiKeysV5Response> {
-        let subuid_str = subuid.to_string();
+        let sub_member_id_str = sub_member_id.to_string();
         let limit_str;
-        let mut params: Vec<(&str, &str)> = vec![("subuid", subuid_str.as_str())];
+        let mut params: Vec<(&str, &str)> =
+            vec![("subMemberId", sub_member_id_str.as_str())];
         if let Some(l) = limit {
             limit_str = l.to_string();
             params.push(("limit", limit_str.as_str()));

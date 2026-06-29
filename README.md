@@ -30,7 +30,7 @@ tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
 ### REST API
 
 ```rust
-use bybit_api::{BybitClient, Category};
+use bybit_api::{AccountType, BybitClient, Category};
 
 #[tokio::main]
 async fn main() -> bybit_api::Result<()> {
@@ -42,7 +42,7 @@ async fn main() -> bybit_api::Result<()> {
     println!("BTC Price: {}", tickers.list[0].last_price);
 
     // Get wallet balance (private endpoint)
-    let balance = client.get_wallet_balance("UNIFIED").await?;
+    let balance = client.get_wallet_balance(AccountType::UNIFIED).await?;
     println!("Total Equity: {}", balance.list[0].total_equity);
 
     Ok(())

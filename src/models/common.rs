@@ -279,10 +279,13 @@ pub enum PositionMode {
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MarginMode {
     /// Cross margin (wire value: `REGULAR_MARGIN`)
+    #[serde(rename = "REGULAR_MARGIN")]
     CROSS,
     /// Isolated margin (wire value: `ISOLATED_MARGIN`)
+    #[serde(rename = "ISOLATED_MARGIN")]
     ISOLATED,
     /// Portfolio margin (wire value: `PORTFOLIO_MARGIN`)
+    #[serde(rename = "PORTFOLIO_MARGIN")]
     PORTFOLIO,
 }
 

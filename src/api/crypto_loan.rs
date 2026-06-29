@@ -299,7 +299,9 @@ impl BybitClient {
         if let Some(s) = vip_level {
             params.push(("vipLevel", s));
         }
-        self.get("/v5/crypto-loan-common/loanable-data", &params)
+        // Public endpoint per Bybit V5 docs ("Does not need authentication"):
+        // https://bybit-exchange.github.io/docs/v5/new-crypto-loan/loan-coin
+        self.get_public("/v5/crypto-loan-common/loanable-data", &params)
             .await
     }
 
