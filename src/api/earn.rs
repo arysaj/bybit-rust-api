@@ -1172,7 +1172,10 @@ impl BybitClient {
     }
 
     pub async fn pwm_list_product_cards(&self) -> Result<PwmListProductCardsResponse> {
-        self.get("/v5/earn/pwm/customize-plan/product", &[]).await
+        // Public endpoint per Bybit V5 docs:
+        // https://bybit-exchange.github.io/docs/v5/finance/pwm/customize-plan/product
+        self.get_public("/v5/earn/pwm/customize-plan/product", &[])
+            .await
     }
 
     pub async fn pwm_query_fund_transfer_result(

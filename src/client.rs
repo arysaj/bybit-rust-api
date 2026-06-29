@@ -60,6 +60,15 @@ fn mask_sensitive(json_body: &str) -> String {
     out
 }
 
+/// Build a form-urlencoded query string used both for HMAC signing and the
+/// request URL. The signed bytes and the bytes Bybit reconstructs from the
+/// wire URL must match exactly, so the same encoder is the only safe source.
+fn encode_query(params: &[(&str, &str)]) -> String {
+    url::form_urlencoded::Serializer::new(String::new())
+        .extend_pairs(params.iter().copied())
+        .finish()
+}
+
 #[cfg(test)]
 mod mask_tests {
     use super::mask_sensitive;
@@ -86,6 +95,37 @@ mod mask_tests {
     fn leaves_unrelated_keys_intact() {
         let input = r#"{"category":"linear","symbol":"BTCUSDT"}"#;
         assert_eq!(mask_sensitive(input), input);
+    }
+}
+
+#[cfg(test)]
+mod query_tests {
+    use super::encode_query;
+
+    #[test]
+    fn empty_params_produce_empty_string() {
+        assert_eq!(encode_query(&[]), "");
+    }
+
+    #[test]
+    fn percent_encodes_base64url_cursor() {
+        // Bybit pagination cursors are base64url and routinely contain
+        // `+`, `/`, `=`. If the signed string differs from the wire query
+        // string by even one byte, Bybit returns `10004 sign error`.
+        let qs = encode_query(&[("cursor", "abc+/=def"), ("limit", "50")]);
+        assert_eq!(qs, "cursor=abc%2B%2F%3Ddef&limit=50");
+    }
+
+    #[test]
+    fn preserves_param_order() {
+        let qs = encode_query(&[("z", "1"), ("a", "2"), ("m", "3")]);
+        assert_eq!(qs, "z=1&a=2&m=3");
+    }
+
+    #[test]
+    fn encodes_ampersand_in_value() {
+        let qs = encode_query(&[("symbol", "BTC&ETH")]);
+        assert_eq!(qs, "symbol=BTC%26ETH");
     }
 }
 
@@ -181,15 +221,15 @@ impl BybitClient {
         endpoint: &str,
         params: &[(&str, &str)],
     ) -> Result<T> {
-        let url = format!("{}{}", self.config.base_url, endpoint);
         let timestamp = get_timestamp();
 
-        // Build query string for signature
-        let query_string = params
-            .iter()
-            .map(|(k, v)| format!("{}={}", k, v))
-            .collect::<Vec<_>>()
-            .join("&");
+        // The HMAC payload MUST be byte-identical to the query string Bybit
+        // reconstructs from the wire URL. We pre-encode here and append the
+        // result to the URL ourselves (rather than letting reqwest re-encode
+        // via `.query()`), so values containing reserved chars — most notably
+        // `+`, `/`, `=` in base64url pagination cursors — produce a matching
+        // sign instead of a `10004 sign error`.
+        let query_string = encode_query(params);
 
         let signature = generate_signature(
             &self.config.api_secret,
@@ -199,11 +239,17 @@ impl BybitClient {
             &query_string,
         );
 
+        let url = if query_string.is_empty() {
+            format!("{}{}", self.config.base_url, endpoint)
+        } else {
+            format!("{}{}?{}", self.config.base_url, endpoint, query_string)
+        };
+
         let headers = self.build_auth_headers(timestamp, &signature);
 
         let response = tokio::time::timeout(
             self.config.timeout,
-            self.http.get(&url).query(params).headers(headers).send(),
+            self.http.get(&url).headers(headers).send(),
         )
         .await
         .map_err(|_| BybitError::Timeout)?
