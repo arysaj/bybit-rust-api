@@ -3,6 +3,7 @@
 use crate::client::BybitClient;
 use crate::error::Result;
 use crate::models::position::*;
+use crate::models::Category;
 use crate::models::*;
 
 impl BybitClient {
@@ -38,6 +39,9 @@ impl BybitClient {
     /// * `symbol` - Symbol name
     /// * `buy_leverage` - Buy leverage
     /// * `sell_leverage` - Sell leverage
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_leverage(
         &self,
         category: Category,
@@ -59,6 +63,9 @@ impl BybitClient {
     ///
     /// # Arguments
     /// * `params` - Trading stop parameters
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_trading_stop(&self, params: TradingStopParams) -> Result<serde_json::Value> {
         self.post("/v5/position/trading-stop", &params).await
     }
@@ -68,6 +75,9 @@ impl BybitClient {
     /// # Arguments
     /// * `category` - Product category
     /// * `mode` - Position mode (0=merged, 3=both sides)
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn switch_position_mode(
         &self,
         category: Category,
@@ -89,6 +99,9 @@ impl BybitClient {
     /// * `category` - Product category
     /// * `symbol` - Symbol name
     /// * `risk_id` - Risk limit ID
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn set_risk_limit(
         &self,
         category: Category,
@@ -111,6 +124,9 @@ impl BybitClient {
     /// * `category` - Product category
     /// * `symbol` - Symbol name
     /// * `margin` - Margin amount (positive to add, negative to reduce)
+    // FIXME(typed-signature): falls back to `serde_json::Value` because the
+    // OpenAPI spec referenced a response/request type that gen-sdk-rust could
+    // not auto-resolve. Replace with a typed struct in a follow-up PR.
     pub async fn add_margin(
         &self,
         category: Category,
@@ -177,5 +193,98 @@ impl BybitClient {
         }
 
         self.get("/v5/execution/list", &params).await
+    }
+
+    pub async fn confirm_new_risk_limit(
+        &self,
+        params: ConfirmNewRiskLimitParams,
+    ) -> Result<ConfirmNewRiskLimitResponse> {
+        self.post("/v5/position/confirm-pending-mmr", &params).await
+    }
+
+    pub async fn get_close_position(
+        &self,
+        category: Category,
+        symbol: Option<&str>,
+        start_time: Option<i64>,
+        end_time: Option<i64>,
+        limit: Option<i64>,
+        cursor: Option<&str>,
+    ) -> Result<GetClosePositionResponse> {
+        let cat_str = category.to_string();
+        let start_time_str = start_time.map(|v| v.to_string());
+        let end_time_str = end_time.map(|v| v.to_string());
+        let limit_str = limit.map(|v| v.to_string());
+        let mut params = vec![("category", cat_str.as_str())];
+        if let Some(s) = symbol {
+            params.push(("symbol", s));
+        }
+        if let Some(ref st) = start_time_str {
+            params.push(("startTime", st.as_str()));
+        }
+        if let Some(ref et) = end_time_str {
+            params.push(("endTime", et.as_str()));
+        }
+        if let Some(ref l) = limit_str {
+            params.push(("limit", l.as_str()));
+        }
+        if let Some(c) = cursor {
+            params.push(("cursor", c));
+        }
+        self.get("/v5/position/get-closed-positions", &params).await
+    }
+
+    #[allow(clippy::too_many_arguments)] // TODO(api-ergonomics): convert positional args to a typed `*Params` struct
+    pub async fn get_move_position_history(
+        &self,
+        category: Option<Category>,
+        symbol: Option<&str>,
+        start_time: Option<i64>,
+        end_time: Option<i64>,
+        status: Option<&str>,
+        block_trade_id: Option<&str>,
+        limit: Option<&str>,
+        cursor: Option<&str>,
+    ) -> Result<GetMovePositionHistoryResponse> {
+        let cat_str = category.map(|c| c.to_string());
+        let start_time_str = start_time.map(|v| v.to_string());
+        let end_time_str = end_time.map(|v| v.to_string());
+        let mut params: Vec<(&str, &str)> = Vec::new();
+        if let Some(ref c) = cat_str {
+            params.push(("category", c.as_str()));
+        }
+        if let Some(s) = symbol {
+            params.push(("symbol", s));
+        }
+        if let Some(ref st) = start_time_str {
+            params.push(("startTime", st.as_str()));
+        }
+        if let Some(ref et) = end_time_str {
+            params.push(("endTime", et.as_str()));
+        }
+        if let Some(s) = status {
+            params.push(("status", s));
+        }
+        if let Some(b) = block_trade_id {
+            params.push(("blockTradeId", b));
+        }
+        if let Some(l) = limit {
+            params.push(("limit", l));
+        }
+        if let Some(c) = cursor {
+            params.push(("cursor", c));
+        }
+        self.get("/v5/position/move-history", &params).await
+    }
+
+    pub async fn move_position(&self, params: MovePositionParams) -> Result<MovePositionResponse> {
+        self.post("/v5/position/move-positions", &params).await
+    }
+
+    pub async fn set_auto_add_margin(
+        &self,
+        params: SetAutoAddMarginParams,
+    ) -> Result<SetAutoAddMarginResponse> {
+        self.post("/v5/position/set-auto-add-margin", &params).await
     }
 }

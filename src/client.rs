@@ -10,6 +10,125 @@ use crate::config::ClientConfig;
 use crate::constants::*;
 use crate::error::{BybitError, Result};
 
+/// JSON keys whose values must be masked before being written to debug logs.
+///
+/// Match is case-insensitive on the unquoted key text. We deliberately do not
+/// try to be exhaustive — anything that looks credential-shaped goes here.
+const SENSITIVE_JSON_KEYS: &[&str] = &[
+    "secret",
+    "password",
+    "apiSecret",
+    "api_secret",
+    "apiKey",
+    "api_key",
+    "privateKey",
+    "private_key",
+    "token",
+    "sign",
+];
+
+/// Mask credential values in a JSON body string before logging.
+///
+/// This is a defensive last line of defense — typed credential fields should
+/// already use [`crate::models::RedactedString`]. The mask is purely textual
+/// (substring of a JSON dump), so it works on both serialized request bodies
+/// and raw HTTP response text.
+fn mask_sensitive(json_body: &str) -> String {
+    let mut out = json_body.to_owned();
+    for key in SENSITIVE_JSON_KEYS {
+        // Match `"<key>":"<anything-not-double-quote>"` (the most common JSON shape).
+        // Use a simple linear scan: find `"<key>":"`, then replace up to the next `"`.
+        let needle = format!("\"{}\":\"", key);
+        let needle_lower = needle.to_lowercase();
+        let mut cursor = 0usize;
+        loop {
+            // Case-insensitive find: scan windows of out from cursor.
+            let lower_remaining = out[cursor..].to_lowercase();
+            let Some(rel) = lower_remaining.find(&needle_lower) else {
+                break;
+            };
+            let start = cursor + rel + needle.len();
+            // Find the closing quote (no escape support — Bybit secrets do not contain `"`).
+            let Some(end_rel) = out[start..].find('"') else {
+                break;
+            };
+            let end = start + end_rel;
+            out.replace_range(start..end, "***REDACTED***");
+            cursor = start + "***REDACTED***".len();
+        }
+    }
+    out
+}
+
+/// Build a form-urlencoded query string used both for HMAC signing and the
+/// request URL. The signed bytes and the bytes Bybit reconstructs from the
+/// wire URL must match exactly, so the same encoder is the only safe source.
+fn encode_query(params: &[(&str, &str)]) -> String {
+    url::form_urlencoded::Serializer::new(String::new())
+        .extend_pairs(params.iter().copied())
+        .finish()
+}
+
+#[cfg(test)]
+mod mask_tests {
+    use super::mask_sensitive;
+
+    #[test]
+    fn masks_secret_field() {
+        let input = r#"{"apiKey":"k1","secret":"superSecretValue","other":"plain"}"#;
+        let out = mask_sensitive(input);
+        assert!(out.contains("***REDACTED***"));
+        assert!(!out.contains("superSecretValue"));
+        assert!(!out.contains("k1"));
+        assert!(out.contains("plain"));
+    }
+
+    #[test]
+    fn masks_password_case_insensitively() {
+        let input = r#"{"Password":"p@ss","apisecret":"x"}"#;
+        let out = mask_sensitive(input);
+        assert!(!out.contains("p@ss"));
+        assert!(!out.contains("\"x\""));
+    }
+
+    #[test]
+    fn leaves_unrelated_keys_intact() {
+        let input = r#"{"category":"linear","symbol":"BTCUSDT"}"#;
+        assert_eq!(mask_sensitive(input), input);
+    }
+}
+
+#[cfg(test)]
+mod query_tests {
+    use super::encode_query;
+
+    #[test]
+    fn empty_params_produce_empty_string() {
+        assert_eq!(encode_query(&[]), "");
+    }
+
+    #[test]
+    fn percent_encodes_base64url_cursor() {
+        // Bybit pagination cursors are base64url and routinely contain
+        // `+`, `/`, `=`. If the signed string differs from the wire query
+        // string by even one byte, Bybit returns `10004 sign error`.
+        let qs = encode_query(&[("cursor", "abc+/=def"), ("limit", "50")]);
+        assert_eq!(qs, "cursor=abc%2B%2F%3Ddef&limit=50");
+    }
+
+    #[test]
+    fn preserves_param_order() {
+        let qs = encode_query(&[("z", "1"), ("a", "2"), ("m", "3")]);
+        assert_eq!(qs, "z=1&a=2&m=3");
+    }
+
+    #[test]
+    fn encodes_ampersand_in_value() {
+        let qs = encode_query(&[("symbol", "BTC&ETH")]);
+        assert_eq!(qs, "symbol=BTC%26ETH");
+    }
+}
+
 /// API response wrapper from Bybit.
 #[derive(Debug, serde::Deserialize)]
 #[serde(rename_all = "camelCase")]
@@ -102,15 +221,15 @@ impl BybitClient {
         endpoint: &str,
         params: &[(&str, &str)],
     ) -> Result<T> {
-        let url = format!("{}{}", self.config.base_url, endpoint);
         let timestamp = get_timestamp();
 
-        // Build query string for signature
-        let query_string = params
-            .iter()
-            .map(|(k, v)| format!("{}={}", k, v))
-            .collect::<Vec<_>>()
-            .join("&");
+        // The HMAC payload MUST be byte-identical to the query string Bybit
+        // reconstructs from the wire URL. We pre-encode here and append the
+        // result to the URL ourselves (rather than letting reqwest re-encode
+        // via `.query()`), so values containing reserved chars — most notably
+        // `+`, `/`, `=` in base64url pagination cursors — produce a matching
+        // sign instead of a `10004 sign error`.
+        let query_string = encode_query(params);
 
         let signature = generate_signature(
             &self.config.api_secret,
@@ -120,11 +239,17 @@ impl BybitClient {
             &query_string,
         );
 
+        let url = if query_string.is_empty() {
+            format!("{}{}", self.config.base_url, endpoint)
+        } else {
+            format!("{}{}?{}", self.config.base_url, endpoint, query_string)
+        };
+
         let headers = self.build_auth_headers(timestamp, &signature);
 
         let response = tokio::time::timeout(
             self.config.timeout,
-            self.http.get(&url).query(params).headers(headers).send(),
+            self.http.get(&url).headers(headers).send(),
         )
         .await
         .map_err(|_| BybitError::Timeout)?
@@ -155,7 +280,7 @@ impl BybitClient {
         let headers = self.build_auth_headers(timestamp, &signature);
 
         if self.config.debug {
-            debug!("POST {} body: {}", url, body_str);
+            debug!("POST {} body: {}", url, mask_sensitive(&body_str));
         }
 
         let response = tokio::time::timeout(
@@ -208,7 +333,11 @@ impl BybitClient {
         let text = response.text().await.map_err(BybitError::Http)?;
 
         if self.config.debug {
-            debug!("Response status: {}, body: {}", status, text);
+            debug!(
+                "Response status: {}, body: {}",
+                status,
+                mask_sensitive(&text)
+            );
         }
 
         if !status.is_success() {

@@ -6,7 +6,7 @@ use rust_decimal::Decimal;
 use serde::{Deserialize, Serialize};
 
 /// Place order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PlaceOrderParams {
     /// Product category
@@ -167,7 +167,7 @@ impl PlaceOrderParams {
 }
 
 /// Amend order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct AmendOrderParams {
     /// Product category
@@ -237,7 +237,7 @@ impl AmendOrderParams {
 }
 
 /// Cancel order request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelOrderParams {
     /// Product category
@@ -275,7 +275,7 @@ impl CancelOrderParams {
 }
 
 /// Cancel all orders request parameters.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllOrdersParams {
     /// Product category
@@ -292,7 +292,7 @@ pub struct CancelAllOrdersParams {
 }
 
 /// Order response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderResponse {
     /// Order ID
@@ -303,7 +303,7 @@ pub struct OrderResponse {
 }
 
 /// Orders list response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrdersList {
     /// Category
@@ -316,7 +316,7 @@ pub struct OrdersList {
 }
 
 /// Order info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct OrderInfo {
     /// Order ID
@@ -368,7 +368,7 @@ pub struct OrderInfo {
 }
 
 /// Batch order request.
-#[derive(Debug, Clone, Serialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderRequest {
     /// Product category
@@ -378,7 +378,7 @@ pub struct BatchOrderRequest {
 }
 
 /// Batch order response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderResponse {
     /// List of results
@@ -386,7 +386,7 @@ pub struct BatchOrderResponse {
 }
 
 /// Single batch order result.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct BatchOrderResult {
     /// Category
@@ -405,7 +405,7 @@ pub struct BatchOrderResult {
 }
 
 /// Cancel all orders response.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelAllResponse {
     /// List of cancelled orders
@@ -413,7 +413,7 @@ pub struct CancelAllResponse {
 }
 
 /// Cancelled order info.
-#[derive(Debug, Clone, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct CancelledOrder {
     /// Order ID
@@ -421,4 +421,631 @@ pub struct CancelledOrder {
     /// User-defined order ID
     #[serde(default)]
     pub order_link_id: String,
+}
+
+pub type DcpSetTimewindowResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct DcpSetTimewindowParams {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub product: Option<String>,
+    pub time_window: i32,
+}
+
+pub type SetDcpResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SetDcpParams {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub product: Option<String>,
+    pub time_window: i32,
+}
+
+pub type PreCheckOrderResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PreCheckOrderParams {
+    pub category: String,
+    pub symbol: String,
+    pub side: String,
+    pub order_type: String,
+    pub qty: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_leverage: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_in_force: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub position_idx: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reduce_only: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+}
+
+pub type GetSpotBorrowQuotaResponse = SpotBorrowQuotaResult;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct SpotBorrowQuotaResult {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub symbol: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_trade_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub max_trade_amount: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub spot_max_trade_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub spot_max_trade_amount: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub borrow_coin: Option<String>,
+}
+
+pub type AmendOrderResponse = AmendOrderResult;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct AmendOrderResult {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchAmendOrdersRequest {
+    pub category: String,
+    pub request: Vec<BatchAmendOrderItem>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchAmendOrderItem {
+    pub symbol: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+}
+
+pub type BatchAmendOrdersResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchCancelOrdersRequest {
+    pub category: String,
+    pub request: Vec<BatchCancelOrderItem>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchCancelOrderItem {
+    pub symbol: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+}
+
+pub type BatchCancelOrdersResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchCreateOrdersRequest {
+    pub category: String,
+    pub request: Vec<BatchOrderItem>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct BatchOrderItem {
+    pub symbol: String,
+    pub side: String,
+    pub order_type: String,
+    pub qty: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_leverage: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub market_unit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_in_force: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_direction: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_filter: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub position_idx: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reduce_only: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub close_on_trigger: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mmp: Option<bool>,
+}
+
+pub type BatchCreateOrdersResponse = serde_json::Value;
+
+pub type CancelAllOrdersResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CancelAllOrdersRequest {
+    pub category: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub symbol: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub base_coin: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub settle_coin: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_filter: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_order_type: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CancelOrderRequest {
+    pub category: String,
+    pub symbol: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_filter: Option<String>,
+}
+
+pub type CancelOrderResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct CreateOrderRequest {
+    pub category: String,
+    pub symbol: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_leverage: Option<i32>,
+    pub side: String,
+    pub order_type: String,
+    pub qty: String,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub market_unit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub slippage_tolerance_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub slippage_tolerance: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_direction: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_filter: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_in_force: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub position_idx: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reduce_only: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub close_on_trigger: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mmp: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bbo_side_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub bbo_level: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rpi_taker_access: Option<bool>,
+}
+
+pub type CreateOrderResponse = serde_json::Value;
+
+pub type GetOpenOrdersResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OrderDetail {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parent_order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_trade_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub symbol: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_leverage: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub position_idx: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_status: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cancel_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reject_reason: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub avg_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub leaves_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub leaves_value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_fee: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_in_force: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub market_unit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_direction: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub last_price_on_created: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reduce_only: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub close_on_trigger: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub place_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_group: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub create_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub oco_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub base_price: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_fee_detail: Option<serde_json::Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created_time: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub updated_time: Option<String>,
+}
+
+pub type GetOrderHistoryResponse = serde_json::Value;
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct OrderHistoryDetail {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub parent_order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_trade_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub symbol: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_leverage: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub position_idx: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_status: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub create_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cancel_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reject_reason: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub avg_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_exec_fee: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub leaves_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub leaves_value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub market_unit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub time_in_force: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub take_profit: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_loss: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tpsl_mode: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_limit_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub tp_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub sl_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_direction: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub last_price_on_created: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub reduce_only: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub close_on_trigger: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub place_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_group: Option<i32>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub smp_order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rpi_taker_access: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub rpi_matched_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub oco_trigger_by: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub base_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub slippage_tolerance_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub slippage_tolerance: Option<String>,
+    // FIXME(typed-field): falls back to `serde_json::Value` because the Bybit
+    // spec did not provide a matching inner type at generation time. Replace
+    // with a typed struct in a follow-up PR after consulting the V5 docs.
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub cum_fee_detail: Option<serde_json::Value>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_fees: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub created_time: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub updated_time: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct TradeExecutionDetail {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub symbol: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub side: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub leaves_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub create_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub stop_order_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_fee: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_fee_v2: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_qty: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_type: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_value: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub exec_time: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fee_currency: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub is_maker: Option<bool>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub fee_rate: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub trade_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mark_iv: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub mark_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub index_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub underlying_price: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub block_trade_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub closed_size: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub seq: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub extra_fees: Option<String>,
+}
+
+#[derive(Debug, Clone, Serialize, Deserialize)]
+#[serde(rename_all = "camelCase")]
+pub struct PreCheckOrderResult {
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub order_link_id: Option<String>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pre_imr_e4: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub pre_mmr_e4: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub post_imr_e4: Option<i64>,
+    #[serde(skip_serializing_if = "Option::is_none")]
+    pub post_mmr_e4: Option<i64>,
 }

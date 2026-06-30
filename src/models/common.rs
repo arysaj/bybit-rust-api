@@ -2,6 +2,52 @@
 
 use serde::{Deserialize, Serialize};
 
+/// A string newtype that hides its contents from `Debug` formatting.
+///
+/// Use for API secrets, passwords, and other credentials that must never
+/// appear in logs. Serializes/deserializes transparently as a plain string
+/// so the wire format is unchanged.
+///
+/// Call [`Self::expose_secret`] to access the underlying value when you
+/// genuinely need it (e.g. to authenticate a request).
+#[derive(Clone, Default, PartialEq, Eq, Serialize, Deserialize)]
+#[serde(transparent)]
+pub struct RedactedString(String);
+
+impl RedactedString {
+    /// Wrap a string. Prefer [`From<String>`] / [`From<&str>`] in code.
+    pub fn new(s: impl Into<String>) -> Self {
+        Self(s.into())
+    }
+
+    /// Access the underlying secret. Use sparingly; never log the return
+    /// value of this method.
+    pub fn expose_secret(&self) -> &str {
+        &self.0
+    }
+}
+
+impl std::fmt::Debug for RedactedString {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        // Note: do NOT include length or any prefix/suffix of the secret;
+        // doing so can leak entropy in low-entropy secrets.
+        f.write_str("RedactedString(***)")
+    }
+}
+
+impl From<String> for RedactedString {
+    fn from(s: String) -> Self {
+        Self(s)
+    }
+}
+
+impl From<&str> for RedactedString {
+    fn from(s: &str) -> Self {
+        Self(s.to_owned())
+    }
+}
+
+
 /// Product category.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 #[serde(rename_all = "lowercase")]
@@ -34,6 +80,15 @@ pub enum Side {
     Buy,
     /// Sell order
     Sell,
+}
+
+impl std::fmt::Display for Side {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::Buy => write!(f, "Buy"),
+            Self::Sell => write!(f, "Sell"),
+        }
+    }
 }
 
 /// Order type.
@@ -114,6 +169,19 @@ pub enum AccountType {
     OPTION,
     /// Fund account
     FUND,
+}
+
+impl std::fmt::Display for AccountType {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::CONTRACT => write!(f, "CONTRACT"),
+            Self::UNIFIED => write!(f, "UNIFIED"),
+            Self::SPOT => write!(f, "SPOT"),
+            Self::INVESTMENT => write!(f, "INVESTMENT"),
+            Self::OPTION => write!(f, "OPTION"),
+            Self::FUND => write!(f, "FUND"),
+        }
+    }
 }
 
 /// Kline interval.
@@ -203,14 +271,32 @@ pub enum PositionMode {
 }
 
 /// Margin mode.
+///
+/// Wire protocol values follow Bybit V5 `/v5/account/set-margin-mode`:
+/// - `ISOLATED_MARGIN`
+/// - `REGULAR_MARGIN` (mapped from [`Self::CROSS`])
+/// - `PORTFOLIO_MARGIN` (mapped from [`Self::PORTFOLIO`])
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Serialize, Deserialize)]
 pub enum MarginMode {
-    /// Cross margin
+    /// Cross margin (wire value: `REGULAR_MARGIN`)
+    #[serde(rename = "REGULAR_MARGIN")]
     CROSS,
-    /// Isolated margin
+    /// Isolated margin (wire value: `ISOLATED_MARGIN`)
+    #[serde(rename = "ISOLATED_MARGIN")]
     ISOLATED,
-    /// Portfolio margin
+    /// Portfolio margin (wire value: `PORTFOLIO_MARGIN`)
+    #[serde(rename = "PORTFOLIO_MARGIN")]
     PORTFOLIO,
+}
+
+impl std::fmt::Display for MarginMode {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        match self {
+            Self::CROSS => write!(f, "REGULAR_MARGIN"),
+            Self::ISOLATED => write!(f, "ISOLATED_MARGIN"),
+            Self::PORTFOLIO => write!(f, "PORTFOLIO_MARGIN"),
+        }
+    }
 }
 
 /// TP/SL mode.
