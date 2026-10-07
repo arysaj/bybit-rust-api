@@ -85,6 +85,10 @@ pub struct LeverageFilter {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 pub struct PriceFilter {
+    /// Min price
+    pub min_price: Option<String>,
+    /// Max price
+    pub max_price: Option<String>,
     /// Tick size
     pub tick_size: String,
 }
